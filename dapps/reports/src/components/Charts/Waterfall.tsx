@@ -152,12 +152,27 @@ const Waterfall = ({
   const minValueFloor = minValue * 0.998
   const maxValueCeil = maxValue * 1.002
 
-  let charactersLength = 20
+  let charactersLength = 15
   let fontSize = 12
-  const isMoreThanMDAndLessThanXL = useMediaQuery(
-    (theme: any) => theme.breakpoints.down('xl') && theme.breakpoints.up('md')
+
+  const isGreaterThanXL = useMediaQuery((theme: any) => theme.breakpoints.up('xl'))
+  if (isGreaterThanXL) {
+    charactersLength = 13
+    fontSize = 13
+  }
+
+  const isMoreThanLGAndLessThanXL = useMediaQuery(
+    (theme: any) => theme.breakpoints.up('lg') && theme.breakpoints.down('xl')
   )
-  if (isMoreThanMDAndLessThanXL) {
+  if (isMoreThanLGAndLessThanXL) {
+    charactersLength = 10
+    fontSize = 12
+  }
+
+  const isMoreThanMDAndLessThanLG = useMediaQuery(
+    (theme: any) => theme.breakpoints.up('md') && theme.breakpoints.down('lg')
+  )
+  if (isMoreThanMDAndLessThanLG) {
     charactersLength = 8
     fontSize = 10
   }
@@ -167,6 +182,11 @@ const Waterfall = ({
     charactersLength = 8
     fontSize = 7
   }
+
+  console.log('isLessThanMD', isLessThanMD)
+  console.log('isMoreThanMDAndLessThanLG', isMoreThanMDAndLessThanLG)
+  console.log('isMoreThanLGAndLessThanXL', isMoreThanLGAndLessThanXL)
+  console.log('isGreaterThanXL', isGreaterThanXL)
 
   return (
     <Box
