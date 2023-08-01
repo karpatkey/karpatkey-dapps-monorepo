@@ -23,9 +23,12 @@ interface State {
 
 const INITIAL_STATE: State = {
   value: {
-    month: null,
-    year: null,
-    dao: null
+    monthSelected: null,
+    yearSelected: null,
+    daoSelected: null,
+    monthOptions: null,
+    yearOptions: null,
+    daoOptions: null
   },
   error: null
 }

@@ -48,6 +48,12 @@ export const getDAO = (daoKey: Maybe<number>) => {
   })
 }
 
+export const getDAOByKeyName = (daoKeyName: DAO_NAME) => {
+  return FILTER_DAOS.find((dao: FILTER_DAO) => {
+    return daoKeyName === dao.keyName
+  })
+}
+
 export const isDAONameValid = (daoName: DAO_NAME) => {
   const dao = FILTER_DAOS.find((dao: FILTER_DAO) => dao.keyName === daoName)
   return !!dao

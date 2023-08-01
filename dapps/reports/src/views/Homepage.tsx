@@ -11,9 +11,9 @@ import * as React from 'react'
 
 const HomepageContent = (props: ReportProps) => {
   const {
-    month,
-    dao,
-    year,
+    monthSelected,
+    daoSelected,
+    yearSelected,
     totalFunds,
     capitalUtilization,
     farmingResults,
@@ -33,15 +33,24 @@ const HomepageContent = (props: ReportProps) => {
     tokenDetails,
     tokenDetailsGrouped,
     tokenDetailByPosition,
-    walletTokenDetail
+    walletTokenDetail,
+    yearOptions,
+    monthOptions,
+    daoOptions
   } = props
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { state, dispatch } = useFilter()
 
   React.useEffect(() => {
-    dispatch({ type: ActionKind.UPDATE, payload: { value: { month, dao, year }, error: null } })
-  }, [month, dao, year, dispatch])
+    dispatch({
+      type: ActionKind.UPDATE,
+      payload: {
+        value: { monthSelected, daoSelected, yearSelected, yearOptions, monthOptions, daoOptions },
+        error: null
+      }
+    })
+  }, [monthSelected, daoSelected, yearSelected, yearOptions, monthOptions, daoOptions, dispatch])
 
   const farmingFundsResultsProps = {
     totalFarmingResultsFarmSwaps,

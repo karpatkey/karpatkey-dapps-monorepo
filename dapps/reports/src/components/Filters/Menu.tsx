@@ -14,7 +14,7 @@ const Menu = () => {
   const { state } = useFilter()
   const router = useRouter()
 
-  const filter = state.value
+  const { daoSelected, monthSelected, yearSelected } = state.value
 
   const [anchorEl, setAnchorEl] = React.useState(null)
 
@@ -35,7 +35,7 @@ const Menu = () => {
 
   // DAO default value
   const filterDaoOption = FILTER_DAOS.find(
-    (option: FILTER_DAO) => filter.dao && option.id === Number(filter.dao)
+    (option: FILTER_DAO) => daoSelected && option.id === Number(daoSelected)
   )
 
   const defaultDAOValue = filterDaoOption
@@ -47,11 +47,11 @@ const Menu = () => {
     : null
 
   // Month default value
-  const filterMonthOption = MONTHS.find((option) => option.id === Number(filter.month))
+  const filterMonthOption = MONTHS.find((option) => option.id === Number(monthSelected))
   const defaultMonthValue = filterMonthOption ? filterMonthOption : null
 
   // Year default value
-  const filterYearOption = YEARS.find((option) => option.id === Number(filter.year))
+  const filterYearOption = YEARS.find((option) => option.id === Number(yearSelected))
   const defaultYearValue = filterYearOption ? filterYearOption : null
 
   const onSubmitClose = (data: SubmitValues) => {
@@ -102,7 +102,11 @@ const Menu = () => {
     <BoxWrapperRow gap={2}>
       <BoxWrapperRow component={'span'} id={id || ''} aria-describedby={id} gap={2}>
         {filterElement}
-        <Share {...filter} />
+        <Share
+          daoSelected={daoSelected}
+          monthSelected={monthSelected}
+          yearSelected={yearSelected}
+        />
       </BoxWrapperRow>
     </BoxWrapperRow>
   )

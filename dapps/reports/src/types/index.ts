@@ -1,7 +1,12 @@
+import { AutocompleteOption } from '@karpatkey-monorepo/shared/components/CustomAutocomplete'
+
 export type Filter = {
-  dao: Maybe<number>
-  month: Maybe<number>
-  year: Maybe<number>
+  daoSelected: Maybe<number>
+  monthSelected: Maybe<number>
+  yearSelected: Maybe<number>
+  monthOptions: Maybe<AutocompleteOption[]>
+  yearOptions: Maybe<AutocompleteOption[]>
+  daoOptions: Maybe<AutocompleteOption[]>
 }
 
 // TODO: improve types without the use of "any"

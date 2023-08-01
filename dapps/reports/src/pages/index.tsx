@@ -9,8 +9,8 @@ import React, { ReactElement } from 'react'
 const HomepageContent = dynamic(() => import('@karpatkey-monorepo/reports/src/views/Homepage'))
 const WelcomeContent = dynamic(() => import('@karpatkey-monorepo/reports/src/views/Welcome'))
 const Homepage = (props: ReportProps) => {
-  const { month, dao, year } = props
-  const isFilterEmpty = !month && !dao && !year
+  const { monthSelected, daoSelected, yearSelected } = props
+  const isFilterEmpty = !monthSelected && !daoSelected && !yearSelected
 
   return isFilterEmpty ? <WelcomeContent /> : <HomepageContent {...props} />
 }
@@ -23,9 +23,9 @@ export default Homepage
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const { query } = ctx
-  const { month = null, year = null, dao = null } = query
+  const { month: monthSelected = null, year: yearSelected = null, dao: daoSelected = null } = query
 
-  const params = { dao, month, year } as Filter
+  const params = { daoSelected, monthSelected, yearSelected } as Filter
 
   // We validate the params here to avoid any errors in the page
   await filterSchemaValidation.validate(params)

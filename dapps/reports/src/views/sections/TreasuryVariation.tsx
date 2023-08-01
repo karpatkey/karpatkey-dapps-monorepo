@@ -23,8 +23,8 @@ const TreasuryVariation = (props: TreasuryVariationProps) => {
     props
 
   const { state } = useFilter()
-  const filterValue = state.value
-  const DAO: Maybe<FILTER_DAO> = getDAO(filterValue.dao) || null
+  const { daoSelected } = state.value
+  const DAO: Maybe<FILTER_DAO> = getDAO(daoSelected) || null
 
   const [toggleType, setToggleType] = React.useState(0)
 

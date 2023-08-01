@@ -12,10 +12,10 @@ import * as React from 'react'
 const Hero = () => {
   const { state } = useFilter()
 
-  const filter = state.value
+  const { daoSelected, monthSelected } = state.value
 
-  const dao: Maybe<FILTER_DAO> = getDAO(filter.dao) || null
-  const monthName = filter.month ? getMonthName(filter.month) : null
+  const dao: Maybe<FILTER_DAO> = getDAO(daoSelected) || null
+  const monthName = monthSelected ? getMonthName(monthSelected) : null
 
   if (!dao || !monthName) {
     return null

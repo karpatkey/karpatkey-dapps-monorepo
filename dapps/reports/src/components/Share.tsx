@@ -1,4 +1,3 @@
-import { Filter } from '@karpatkey-monorepo/reports/src/types'
 import Button from '@mui/material/Button'
 import * as React from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
@@ -8,20 +7,26 @@ interface State extends SnackbarOrigin {
   open: boolean
 }
 
-const Share = (props: Filter) => {
-  const { month, dao, year } = props
+interface ShareProps {
+  daoSelected: Maybe<number>
+  monthSelected: Maybe<number>
+  yearSelected: Maybe<number>
+}
+
+const Share = (props: ShareProps) => {
+  const { monthSelected, daoSelected, yearSelected } = props
   const value = React.useMemo(() => {
     const query = new URLSearchParams()
     const url = window.location.href.split('?')[0]
-    if (dao) query.append('dao', dao + '')
-    if (month) query.append('month', month + '')
-    if (year) query.append('year', year + '')
+    if (daoSelected) query.append('dao', daoSelected + '')
+    if (monthSelected) query.append('month', monthSelected + '')
+    if (yearSelected) query.append('year', yearSelected + '')
     return `${url}?${query.toString()}`
-  }, [month, dao, year])
+  }, [monthSelected, daoSelected, yearSelected])
 
   const isShareButtonEnable = React.useMemo(() => {
-    return !!month || !!dao || !!year
-  }, [month, dao, year])
+    return !!monthSelected || !!daoSelected || !!yearSelected
+  }, [monthSelected, daoSelected, yearSelected])
 
   // Snackbar state and handlers
   const [snackbarState, setSnackbarState] = React.useState<State>({
