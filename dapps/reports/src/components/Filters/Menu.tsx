@@ -80,32 +80,28 @@ const Menu = () => {
     buttonTitle: 'Apply selection'
   }
 
-  const filterElement = (
-    <Filter
-      id={id}
-      title={'Select report'}
-      handleClick={handleClick}
-      handleClose={handleClose}
-      handleClear={handleClear}
-      anchorEl={anchorEl}
-      open={open}
-      enableDAO
-      enableMonth
-      enableYear
-      DAO={defaultDAOValue?.label ?? ''}
-      year={defaultYearValue?.label ?? ''}
-      month={defaultMonthValue?.label ?? ''}
-      tooltipText={'Clear selected report'}
-      position={'middle'}
-    >
-      <Form {...formProps} />
-    </Filter>
-  )
-
   return (
     <BoxWrapperRow gap={2}>
       <BoxWrapperRow id={id || ''} gap={2}>
-        {filterElement}
+        <Filter
+          id={id}
+          title={'Select report'}
+          handleClick={handleClick}
+          handleClose={handleClose}
+          handleClear={handleClear}
+          anchorEl={anchorEl}
+          open={open}
+          enableDAO
+          enableMonth
+          enableYear
+          DAO={defaultDAOValue?.label ?? ''}
+          year={defaultYearValue?.label ?? ''}
+          month={defaultMonthValue?.label ?? ''}
+          tooltipText={'Clear selected report'}
+          position={'middle'}
+        >
+          <Form {...formProps} />
+        </Filter>
         <Share
           daoSelected={daoSelected}
           monthSelected={monthSelected}
