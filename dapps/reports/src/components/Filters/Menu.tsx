@@ -73,6 +73,7 @@ const Menu = () => {
   const filterElement = (
     <Filter
       id={id}
+      title="Select report"
       handleClick={handleClick}
       handleClose={handleClose}
       handleClear={handleClear}
@@ -84,6 +85,7 @@ const Menu = () => {
       DAO={defaultDAOValue ? defaultDAOValue.label : ''}
       year={defaultYearValue ? defaultYearValue.label : ''}
       month={defaultMonthValue ? defaultMonthValue.label : ''}
+      tooltipText={'Clear selected report'}
     >
       <Form
         onRequestClose={handleClose}
@@ -94,13 +96,14 @@ const Menu = () => {
         enableDAO
         enableYear
         enableMonth
+        buttonTitle={'Apply selection'}
       />
     </Filter>
   )
 
   return (
     <BoxWrapperRow gap={2}>
-      <BoxWrapperRow component={'span'} id={id || ''} aria-describedby={id} gap={2}>
+      <BoxWrapperRow id={id || ''} gap={2}>
         {filterElement}
         <Share
           daoSelected={daoSelected}

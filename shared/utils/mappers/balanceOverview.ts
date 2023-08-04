@@ -8,10 +8,10 @@ export const getBalanceOverviewByType = (data: any) => {
       const tokenCategory = obj['token_category'].replace(/[0-9][0-9] /g, '').trim()
       const protocol = obj['protocol'].trim()
       const metricKey = metric.includes('unclaim')
-        ? 'Unclaimed Rewards'
+        ? 'Unclaimed rewards'
         : metric.includes('balance') && protocol.includes('Wallet')
         ? 'Wallet'
-        : 'Farming Funds'
+        : 'Farming funds'
 
       if (!acc[tokenCategory]) acc[tokenCategory] = {}
       if (!acc[tokenCategory][metricKey])
@@ -25,14 +25,14 @@ export const getBalanceOverviewByType = (data: any) => {
 
   return Object.keys(rows)
     .map((key: string) => {
-      const farmingFunds = rows[key as any]['Farming Funds' as any]?.funds ?? 0
-      const unclaimedRewards = rows[key as any]['Unclaimed Rewards' as any]?.funds ?? 0
+      const farmingFunds = rows[key as any]['Farming funds' as any]?.funds ?? 0
+      const unclaimedRewards = rows[key as any]['Unclaimed rewards' as any]?.funds ?? 0
       const wallet = rows[key as any]['Wallet' as any]?.funds ?? 0
       const total = farmingFunds + unclaimedRewards + wallet
       return {
         'Token Category': key,
-        'Farming Funds': farmingFunds,
-        'Unclaimed Rewards': unclaimedRewards,
+        'Farming funds': farmingFunds,
+        'Unclaimed rewards': unclaimedRewards,
         Wallet: wallet,
         Total: total
       }

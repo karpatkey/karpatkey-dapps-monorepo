@@ -110,6 +110,7 @@ const WalletTokenDetailContainer = (props: WalletTokenDetailContainerProps & Pap
       open={open}
       blockchain={blockchainFilter}
       enableBlockchain
+      tooltipText={'Clear filter'}
     >
       <Form
         blockchainOptions={blockchainOptions}
@@ -117,6 +118,7 @@ const WalletTokenDetailContainer = (props: WalletTokenDetailContainerProps & Pap
         onSubmitClose={onSubmitClose}
         defaultBlockchainValue={defaultBlockchainValue}
         enableBlockchain
+        buttonTitle={'Apply filter'}
       />
     </Filter>
   )

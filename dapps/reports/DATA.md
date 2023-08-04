@@ -3,7 +3,7 @@
 | Section                   | Subsection                                   | Data development stage                        | Data production stage                                     |     |
 | ------------------------- | -------------------------------------------- | --------------------------------------------- | --------------------------------------------------------- | --- |
 | Summary                   | Total funds                                  | reports.mvw_treasury_variation_metrics_detail | reports_production.prod_treasury_variation_metrics_detail |     |
-| Summary                   | Capital utilization                          | reports.vw_treasury_financial_metrics         | reports_production.prod_treasury_financial_metrics        |     |
+| Summary                   | Capital utilisation                          | reports.vw_treasury_financial_metrics         | reports_production.prod_treasury_financial_metrics        |     |
 | Summary                   | Farming results                              | reports.vw_treasury_financial_metrics         | reports_production.prod_treasury_financial_metrics        |     |
 | Summary                   | APY                                          | reports.vw_financial_metric_and_var_detail    | reports_production.vw_financial_metric_and_var_detail     |     |
 | Summary                   | Total funds by token category                | reports.mvw_treasury_variation_metrics_detail | reports_production.prod_treasury_variation_metrics_detail |     |

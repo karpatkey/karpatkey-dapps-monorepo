@@ -106,6 +106,7 @@ const TokenDetailContainer = (props: TokenDetailContainerProps) => {
       open={open}
       blockchain={blockchainFilter}
       enableBlockchain
+      tooltipText={'Clear filter'}
     >
       <Form
         blockchainOptions={blockchainOptions}
@@ -113,6 +114,7 @@ const TokenDetailContainer = (props: TokenDetailContainerProps) => {
         onSubmitClose={onSubmitClose}
         defaultBlockchainValue={defaultBlockchainValue}
         enableBlockchain
+        buttonTitle={'Apply filter'}
       />
     </Filter>
   )

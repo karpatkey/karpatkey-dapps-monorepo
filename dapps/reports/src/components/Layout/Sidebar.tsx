@@ -117,14 +117,19 @@ const Sidebar = () => {
                   <Box
                     onClick={() => {
                       setSectionVisible(slugify(text))
-                      router.push(`#${slugify(text)}`)
+                      router.push(`#${slugify(text)}`).catch((e) => {
+                        // workaround for https://github.com/vercel/next.js/issues/37362
+                        if (!e.cancelled) {
+                          throw e
+                        }
+                      })
                     }}
                     key={index}
                     style={{ textDecoration: 'none', color: 'black' }}
                   >
                     <ListItem key={text}>
                       <ListItemButton sx={{ padding: '0 0' }} disableTouchRipple>
-                        <ListItemIcon sx={{ justifyContent: 'flex-start', minWidth: '40px' }}>
+                        <ListItemIcon sx={{ justifyContent: 'flex-start', minWidth: '35px' }}>
                           {isActive ? (
                             <CircleIcon sx={{ color: 'custom.black.primary' }} />
                           ) : (

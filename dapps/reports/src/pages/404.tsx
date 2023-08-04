@@ -1,8 +1,8 @@
 import CustomTypography from '@karpatkey-monorepo/shared/components/CustomTypography'
-import TextLink from '@karpatkey-monorepo/shared/components/TextLink'
 import { Box, Button, styled } from '@mui/material'
 import { NextPage } from 'next'
 import * as React from 'react'
+import { useRouter } from 'next/router'
 
 const PageWrapper = styled(Box)({
   maxWidth: 1000,
@@ -31,6 +31,12 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }))
 
 const Custom404Page: NextPage = () => {
+  const router = useRouter()
+
+  const onClickBackToHome = () => {
+    router.push('/')
+  }
+
   return (
     <PageWrapper>
       <Box height="100%" display="flex" alignItems="center">
@@ -40,11 +46,9 @@ const Custom404Page: NextPage = () => {
           </CustomTypography>
         </Box>
         <HomeLinkWrapper>
-          <TextLink useNextLink={false} href="/" withUnderlineAnimation={false}>
-            <StyledButton size="large" type="button" variant="contained">
-              Back to Home
-            </StyledButton>
-          </TextLink>
+          <StyledButton size="large" type="button" variant="contained" onClick={onClickBackToHome}>
+            Back to Home
+          </StyledButton>
         </HomeLinkWrapper>
       </Box>
     </PageWrapper>

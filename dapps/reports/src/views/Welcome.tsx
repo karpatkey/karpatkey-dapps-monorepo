@@ -53,7 +53,7 @@ const Welcome = () => {
           fontStyle: 'normal'
         }}
       >
-        Select filters above
+        Select report above
       </CustomTypography>
       <Box
         sx={{

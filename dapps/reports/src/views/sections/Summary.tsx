@@ -46,7 +46,7 @@ const Summary = (props: SummaryProps) => {
         >
           <BoxInfoCard title="Total funds" value={formatCurrency(totalFunds)} />
           <BoxInfoCard
-            title="Capital utilization"
+            title="Capital utilisation"
             value={formatPercentage(capitalUtilization, 1)}
           />
           <BoxInfoCard title="Farming results" value={formatCurrency(farmingResults)} />

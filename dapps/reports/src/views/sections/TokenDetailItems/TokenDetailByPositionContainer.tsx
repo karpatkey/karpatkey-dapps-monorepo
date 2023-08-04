@@ -92,7 +92,7 @@ const TokenDetailByPositionContainer = (props: TokenDetailByPositionContainerPro
   const blockchainOptions = tokenDetailByPosition
     .reduce((acc: any, item: any) => {
       const { blockchain } = item
-      if (!acc.includes(blockchain)) {
+      if (!acc.includes(blockchain) && blockchain) {
         acc.push(blockchain)
       }
       return acc
@@ -114,7 +114,7 @@ const TokenDetailByPositionContainer = (props: TokenDetailByPositionContainerPro
   const protocolOptions = tokenDetailByPosition
     .reduce((acc: any, item: any) => {
       const { protocol } = item
-      if (!acc.includes(protocol)) {
+      if (!acc.includes(protocol) && protocol) {
         acc.push(protocol)
       }
       return acc
@@ -133,7 +133,7 @@ const TokenDetailByPositionContainer = (props: TokenDetailByPositionContainerPro
       if (categories && categories.length > 0) {
         categories.forEach(({ tokens }: any) => {
           tokens?.forEach(({ symbol }: any) => {
-            if (!acc.includes(symbol)) {
+            if (!acc.includes(symbol) && symbol) {
               acc.push(symbol)
             }
           })
@@ -163,6 +163,7 @@ const TokenDetailByPositionContainer = (props: TokenDetailByPositionContainerPro
       enableBlockchain
       enableProtocol
       enableToken
+      tooltipText={'Clear filter'}
     >
       <Form
         blockchainOptions={blockchainOptions}
@@ -176,6 +177,7 @@ const TokenDetailByPositionContainer = (props: TokenDetailByPositionContainerPro
         enableBlockchain
         enableProtocol
         enableToken
+        buttonTitle={'Apply filter'}
       />
     </Filter>
   )

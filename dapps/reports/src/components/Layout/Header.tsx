@@ -1,6 +1,6 @@
 import Filters from '@karpatkey-monorepo/reports/src/components/Filters/Menu'
 import AnimatePresenceWrapper from '@karpatkey-monorepo/shared/components/AnimatePresenceWrapper'
-import Logo from '@karpatkey-monorepo/shared/components/Logo'
+import LogoKarpatkey from '@karpatkey-monorepo/shared/components/LogoKarpatkey'
 import BoxWrapperRow from '@karpatkey-monorepo/shared/components/Wrappers/BoxWrapperRow'
 import React from 'react'
 
@@ -17,7 +17,7 @@ const Header = () => {
           height: HEADER_HEIGHT
         }}
       >
-        <Logo />
+        <LogoKarpatkey />
         <Filters />
       </BoxWrapperRow>
     </AnimatePresenceWrapper>

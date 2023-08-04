@@ -158,6 +158,7 @@ interface FormProps {
   enableDAO?: boolean
   enableYear?: boolean
   enableMonth?: boolean
+  buttonTitle?: string
 }
 
 const Form = (props: FormProps) => {
@@ -178,7 +179,8 @@ const Form = (props: FormProps) => {
     enableProtocol = false,
     enableDAO = false,
     enableYear = false,
-    enableMonth = false
+    enableMonth = false,
+    buttonTitle
   } = props
 
   // Yup validation
@@ -296,7 +298,7 @@ const Form = (props: FormProps) => {
                 </BoxWrapperRow>
               )}
               <ButtonStyled sx={{ marginLeft: 'auto' }} type="submit">
-                Apply filter
+                {buttonTitle}
               </ButtonStyled>
             </BoxWrapperRow>
           </BoxWrapperColumn>

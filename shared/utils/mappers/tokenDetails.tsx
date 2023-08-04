@@ -177,26 +177,26 @@ export const getTokenDetailByPosition = (data: any) => {
 
   const commonCards = rowsFiltered
     .reduce((acc: any, obj: any): any => {
-      const tokenSymbol = obj.token_symbol && obj.token_symbol.trim()
-      const position = obj.lptoken_name.trim()
-
-      if (!tokenSymbol || position.includes('Vault')) {
+      const cardType = obj?.type?.trim()
+      if (cardType === 'CDP') {
         return acc
       }
 
-      const blockchain = obj.blockchain.trim()
-      const protocol = obj.protocol.trim()
+      const tokenSymbol = obj?.token_symbol?.trim()
+      const position = obj?.lptoken_name?.trim()
+      const blockchain = obj?.blockchain?.trim()
+      const protocol = obj?.protocol?.trim()
+      const metric = obj?.metric?.trim()
 
-      let categoryName = 'Farming Funds'
-      if (obj.metric && obj.metric.includes('unclaim')) {
-        categoryName = 'Unclaimed Rewards'
+      if (!tokenSymbol || !position || !blockchain || !protocol || !metric) {
+        return acc
       }
-      if (
-        obj.metric &&
-        obj.metric.includes('balance') &&
-        obj.protocol &&
-        obj.protocol.includes('Wallet')
-      ) {
+
+      let categoryName = 'Farming funds'
+      if (metric.includes('unclaim')) {
+        categoryName = 'Unclaimed rewards'
+      }
+      if (metric.includes('balance') && protocol.includes('Wallet')) {
         categoryName = 'Wallet'
       }
 
@@ -206,6 +206,9 @@ export const getTokenDetailByPosition = (data: any) => {
         )
       })
 
+      const balance = obj.bal_1 ? obj.bal_1 : 0
+      const price = obj.next_period_first_price ? obj.next_period_first_price : 0
+
       if (cardFound) {
         const categoryFound = cardFound?.categories.find((category: any) => {
           return category.name === categoryName
@@ -214,10 +217,8 @@ export const getTokenDetailByPosition = (data: any) => {
         if (categoryFound) {
           categoryFound.tokens.push({
             symbol: tokenSymbol,
-            balance: obj.bal_1 ? obj.bal_1 : 0,
-            usdValue:
-              (obj.bal_1 ? obj.bal_1 : 0) *
-              (obj.next_period_first_price ? obj.next_period_first_price : 0)
+            balance,
+            usdValue: balance * price
           })
         } else {
           cardFound.categories.push({
@@ -225,10 +226,8 @@ export const getTokenDetailByPosition = (data: any) => {
             tokens: [
               {
                 symbol: tokenSymbol,
-                balance: obj.bal_1 ? obj.bal_1 : 0,
-                usdValue:
-                  (obj.bal_1 ? obj.bal_1 : 0) *
-                  (obj.next_period_first_price ? obj.next_period_first_price : 0)
+                balance,
+                usdValue: balance * price
               }
             ]
           })
@@ -245,10 +244,8 @@ export const getTokenDetailByPosition = (data: any) => {
               tokens: [
                 {
                   symbol: tokenSymbol,
-                  balance: obj.bal_1 ? obj.bal_1 : 0,
-                  usdValue:
-                    (obj.bal_1 ? obj.bal_1 : 0) *
-                    (obj.next_period_first_price ? obj.next_period_first_price : 0)
+                  balance,
+                  usdValue: balance * price
                 }
               ]
             }
@@ -284,21 +281,26 @@ export const getTokenDetailByPosition = (data: any) => {
     const blockchain = obj?.blockchain?.trim()
     const protocol = obj?.protocol?.trim()
     const position = obj?.lptoken_name?.trim()
+    const tokenSymbol = obj?.token_symbol?.trim()
+
+    if (!blockchain || !protocol || !position) {
+      return acc
+    }
 
     const positionType = 'Ratios'
 
     let ratioName = ''
-    if (!obj.token_symbol && obj.metric_code === 'm24') {
-      ratioName = 'Collateral Price drop to liquidation'
+    if (!tokenSymbol && metricCode === 'm24') {
+      ratioName = 'Collateral price drop to liquidation'
     }
-    if (!obj.token_symbol && obj.metric_code === 'm23') {
-      ratioName = 'Collateral Liquidation Price'
+    if (!tokenSymbol && metricCode === 'm23') {
+      ratioName = 'Collateral liquidation price'
     }
-    if (!obj.token_symbol && obj.metric_code === 'm22') {
-      ratioName = 'Minimum Collateral Ratio'
+    if (!tokenSymbol && metricCode === 'm22') {
+      ratioName = 'Minimum collateral ratio'
     }
-    if (!obj.token_symbol && obj.metric_code === 'm21') {
-      ratioName = 'Collateral Ratio'
+    if (!tokenSymbol && metricCode === 'm21') {
+      ratioName = 'Collateral ratio'
     }
 
     const cardFound = acc.find((card: any) => {
@@ -306,6 +308,8 @@ export const getTokenDetailByPosition = (data: any) => {
         card.blockchain === blockchain && card.protocol === protocol && card.position === position
       )
     })
+
+    const value = obj.metric_value ? obj.metric_value : 0
 
     if (cardFound) {
       const categoryFound = cardFound?.categories.find((category: any) => {
@@ -315,7 +319,7 @@ export const getTokenDetailByPosition = (data: any) => {
       if (categoryFound) {
         categoryFound?.ratios?.push({
           name: ratioName,
-          value: obj.metric_value ? obj.metric_value : 0
+          value
         })
       } else {
         cardFound?.categories?.push({
@@ -323,7 +327,7 @@ export const getTokenDetailByPosition = (data: any) => {
           ratios: [
             {
               name: ratioName,
-              value: obj.metric_value ? obj.metric_value : 0
+              value
             }
           ]
         })
@@ -340,7 +344,7 @@ export const getTokenDetailByPosition = (data: any) => {
             ratios: [
               {
                 name: ratioName,
-                value: obj.metric_value ? obj.metric_value : 0
+                value
               }
             ]
           }
@@ -353,18 +357,23 @@ export const getTokenDetailByPosition = (data: any) => {
 
   const vaultCards = rowsFiltered
     .reduce((acc: any, obj: any): any => {
-      const position = obj.lptoken_name.trim()
-      const origin = obj.origin.trim()
+      const cardType = obj?.type?.trim()
 
-      if (!position.includes('Vault') || origin !== 'detail') {
+      if (cardType === 'Standard') {
         return acc
       }
 
-      const value = obj.bal_1 ? obj.bal_1 : 0
+      const position = obj?.lptoken_name?.trim()
       const blockchain = obj?.blockchain?.trim()
       const protocol = obj?.protocol?.trim()
+      const tokenSymbol = obj?.token_symbol?.trim()
 
-      const category = value > 0 ? 'Farming Funds: Collateral' : 'Farming Funds: Debt'
+      if (!position || !blockchain || !protocol || !tokenSymbol) {
+        return acc
+      }
+
+      const balance = obj.bal_1 ? obj.bal_1 : 0
+      const categoryName = balance > 0 ? 'Farming funds: collateral' : 'Farming funds: debt'
 
       const cardFound = acc.find((card: any) => {
         return (
@@ -372,25 +381,27 @@ export const getTokenDetailByPosition = (data: any) => {
         )
       })
 
+      const price = obj.next_period_first_price ? obj.next_period_first_price : 0
+
       if (cardFound) {
         const categoryFound = cardFound?.categories.find((category: any) => {
-          return category.name === category
+          return category.name === categoryName
         })
 
         if (categoryFound) {
           categoryFound?.tokens?.push({
-            symbol: obj.token_symbol,
-            balance: value,
-            usdValue: value * (obj.next_period_first_price ? obj.next_period_first_price : 0)
+            symbol: tokenSymbol,
+            balance,
+            usdValue: balance * price
           })
         } else {
           cardFound?.categories?.push({
-            name: category,
+            name: categoryName,
             tokens: [
               {
-                symbol: obj.token_symbol,
-                balance: value,
-                usdValue: value * (obj.next_period_first_price ? obj.next_period_first_price : 0)
+                symbol: tokenSymbol,
+                balance,
+                usdValue: balance * price
               }
             ]
           })
@@ -403,12 +414,12 @@ export const getTokenDetailByPosition = (data: any) => {
           cardType: 'metrics',
           categories: [
             {
-              name: category,
+              name: categoryName,
               tokens: [
                 {
-                  symbol: obj.token_symbol,
-                  balance: value,
-                  usdValue: value * (obj.next_period_first_price ? obj.next_period_first_price : 0)
+                  symbol: tokenSymbol,
+                  balance,
+                  usdValue: balance * price
                 }
               ]
             }

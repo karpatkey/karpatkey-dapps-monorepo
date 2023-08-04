@@ -1,4 +1,6 @@
 import Aave from '@karpatkey-monorepo/shared/components/Icons/Protocols/Aave'
+import AaveV3 from '@karpatkey-monorepo/shared/components/Icons/Protocols/AaveV3'
+import Angle from '@karpatkey-monorepo/shared/components/Icons/Protocols/Angle'
 import Agave from '@karpatkey-monorepo/shared/components/Icons/Protocols/Agave'
 import Ankr from '@karpatkey-monorepo/shared/components/Icons/Protocols/Ankr'
 import Aura from '@karpatkey-monorepo/shared/components/Icons/Protocols/Aura'
@@ -16,6 +18,7 @@ import Idle from '@karpatkey-monorepo/shared/components/Icons/Protocols/Idle'
 import Lido from '@karpatkey-monorepo/shared/components/Icons/Protocols/Lido'
 import Maker from '@karpatkey-monorepo/shared/components/Icons/Protocols/Maker'
 import Notional from '@karpatkey-monorepo/shared/components/Icons/Protocols/Notional'
+import Pods from '@karpatkey-monorepo/shared/components/Icons/Protocols/Pods'
 import StakeWise from '@karpatkey-monorepo/shared/components/Icons/Protocols/StakeWise'
 import SushiSwap from '@karpatkey-monorepo/shared/components/Icons/Protocols/SushiSwap'
 import Swapr from '@karpatkey-monorepo/shared/components/Icons/Protocols/Swapr'
@@ -35,6 +38,12 @@ const ProtocolIcon = (props: ProtocolIconProps) => {
   switch (protocol) {
     case 'Aave':
       icon = <Aave width={24} height={24} />
+      break
+    case 'AaveV3':
+      icon = <AaveV3 width={24} height={24} />
+      break
+    case 'Angle':
+      icon = <Angle width={24} height={24} />
       break
     case 'Azuro':
       icon = <Azuro width={24} height={24} />
@@ -86,6 +95,9 @@ const ProtocolIcon = (props: ProtocolIconProps) => {
       break
     case 'Notional':
       icon = <Notional width={24} height={24} />
+      break
+    case 'Pods':
+      icon = <Pods width={24} height={24} />
       break
     case 'Swapr':
       icon = <Swapr width={24} height={24} />
