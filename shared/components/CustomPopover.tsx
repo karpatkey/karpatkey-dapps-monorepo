@@ -1,13 +1,15 @@
 import { Box, Popover } from '@mui/material'
 import React from 'react'
 
+export type PopoverPosition = 'left' | 'middle' | 'right'
+
 interface CustomPopoverProps {
   id: string | undefined
   open: boolean
   anchorEl: any
   handleClose: () => void
   children: React.ReactNode
-  position?: 'left' | 'middle' | 'right'
+  position?: PopoverPosition
 }
 
 const CustomPopover = (props: CustomPopoverProps) => {

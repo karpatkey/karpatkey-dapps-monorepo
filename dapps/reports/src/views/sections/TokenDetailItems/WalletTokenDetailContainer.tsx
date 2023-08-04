@@ -111,6 +111,7 @@ const WalletTokenDetailContainer = (props: WalletTokenDetailContainerProps & Pap
       blockchain={blockchainFilter}
       enableBlockchain
       tooltipText={'Clear filter'}
+      position={'middle'}
     >
       <Form
         blockchainOptions={blockchainOptions}

@@ -117,6 +117,7 @@ const FundsContainer = (props: FundsContainerProps) => {
       enableProtocol
       enableBlockchain
       tooltipText={'Clear filter'}
+      position={'middle'}
     >
       <Form
         blockchainOptions={blockchainOptions}

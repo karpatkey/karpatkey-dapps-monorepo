@@ -1,4 +1,4 @@
-import CustomPopover from '@karpatkey-monorepo/shared/components/CustomPopover'
+import CustomPopover, { PopoverPosition } from '@karpatkey-monorepo/shared/components/CustomPopover'
 import CustomTypography from '@karpatkey-monorepo/shared/components/CustomTypography'
 import FilterTextOption from '@karpatkey-monorepo/shared/components/Filter/FilterTextOption'
 import BoxWrapperRow from '@karpatkey-monorepo/shared/components/Wrappers/BoxWrapperRow'
@@ -6,15 +6,15 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import * as React from 'react'
 import Tooltip from '@mui/material/Tooltip'
 
-interface FilterProps {
-  id: string | undefined
+export interface FilterProps {
+  id?: string
   title?: string
   open: boolean
   anchorEl: any
   handleClose: () => void
   handleClear: () => void
   handleClick: (event: any) => void
-  children: React.ReactNode
+  children?: React.ReactElement
   blockchain?: Maybe<string>
   protocol?: Maybe<string>
   token?: Maybe<string>
@@ -27,7 +27,7 @@ interface FilterProps {
   enableDAO?: boolean
   enableYear?: boolean
   enableMonth?: boolean
-  position?: 'left' | 'right' | 'middle'
+  position: PopoverPosition
   tooltipText?: string
 }
 
@@ -142,7 +142,7 @@ const Filter = (props: FilterProps) => {
         open={open}
         anchorEl={anchorEl}
         handleClose={handleClose}
-        position={position}
+        position={position as PopoverPosition}
       >
         {children}
       </CustomPopover>

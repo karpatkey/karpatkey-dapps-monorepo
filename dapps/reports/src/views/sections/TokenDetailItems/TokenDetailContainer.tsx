@@ -107,6 +107,7 @@ const TokenDetailContainer = (props: TokenDetailContainerProps) => {
       blockchain={blockchainFilter}
       enableBlockchain
       tooltipText={'Clear filter'}
+      position={'middle'}
     >
       <Form
         blockchainOptions={blockchainOptions}

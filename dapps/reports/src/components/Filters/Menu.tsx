@@ -40,40 +40,50 @@ const Menu = () => {
 
   const defaultDAOValue = filterDaoOption
     ? ({
-        logo: filterDaoOption.icon,
-        label: filterDaoOption.name,
-        id: filterDaoOption.id
+        logo: filterDaoOption?.icon,
+        label: filterDaoOption?.name,
+        id: filterDaoOption?.id
       } as AutocompleteOption)
     : null
 
   // Month default value
   const filterMonthOption = MONTHS.find((option) => option.id === Number(monthSelected))
-  const defaultMonthValue = filterMonthOption ? filterMonthOption : null
+  const defaultMonthValue = filterMonthOption ?? null
 
   // Year default value
   const filterYearOption = YEARS.find((option) => option.id === Number(yearSelected))
-  const defaultYearValue = filterYearOption ? filterYearOption : null
+  const defaultYearValue = filterYearOption ?? null
 
   const onSubmitClose = (data: SubmitValues) => {
-    const month = data?.month
-    const dao = data?.DAO
-    const year = data?.year
+    const { month, DAO: dao, year } = data
 
     if (month === undefined || dao === undefined || year === undefined) return
 
     const query = new URLSearchParams()
-    if (dao !== null && dao !== undefined) query.append('dao', dao + '')
-    if (month !== null && month !== undefined) query.append('month', month + '')
-    if (year !== null && year !== undefined) query.append('year', year + '')
+    if (dao) query.append('dao', dao + '')
+    if (month) query.append('month', month + '')
+    if (year) query.append('year', year + '')
 
     const href = `/?${query.toString()}`
     router.push(href)
   }
 
+  const formProps = {
+    onRequestClose: handleClose,
+    onSubmitClose,
+    defaultDAOValue,
+    defaultYearValue,
+    defaultMonthValue,
+    enableDAO: true,
+    enableYear: true,
+    enableMonth: true,
+    buttonTitle: 'Apply selection'
+  }
+
   const filterElement = (
     <Filter
       id={id}
-      title="Select report"
+      title={'Select report'}
       handleClick={handleClick}
       handleClose={handleClose}
       handleClear={handleClear}
@@ -82,22 +92,13 @@ const Menu = () => {
       enableDAO
       enableMonth
       enableYear
-      DAO={defaultDAOValue ? defaultDAOValue.label : ''}
-      year={defaultYearValue ? defaultYearValue.label : ''}
-      month={defaultMonthValue ? defaultMonthValue.label : ''}
+      DAO={defaultDAOValue?.label ?? ''}
+      year={defaultYearValue?.label ?? ''}
+      month={defaultMonthValue?.label ?? ''}
       tooltipText={'Clear selected report'}
+      position={'middle'}
     >
-      <Form
-        onRequestClose={handleClose}
-        onSubmitClose={onSubmitClose}
-        defaultDAOValue={defaultDAOValue}
-        defaultYearValue={defaultYearValue}
-        defaultMonthValue={defaultMonthValue}
-        enableDAO
-        enableYear
-        enableMonth
-        buttonTitle={'Apply selection'}
-      />
+      <Form {...formProps} />
     </Filter>
   )
 
