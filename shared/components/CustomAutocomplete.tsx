@@ -13,6 +13,7 @@ export interface AutocompleteOption {
 interface AutocompleteProps {
   name: string
   control: any
+  onChange: any
   options: AutocompleteOption[]
   label?: React.ReactElement
   renderInput?: (params: AutocompleteRenderInputParams) => React.ReactElement
@@ -27,7 +28,7 @@ const CustomRenderOption = (props: any, option: any) => {
   )
 }
 export const CustomAutocomplete = (props: AutocompleteProps) => {
-  const { options, label, renderInput, renderOption, name, control } = props
+  const { onChange: onChangeAutocomplete,  options, label, renderInput, renderOption, name, control } = props
 
   const isOptionEqualToValue = (option: AutocompleteOption, value: AutocompleteOption) =>
     option.id == value.id
@@ -45,7 +46,10 @@ export const CustomAutocomplete = (props: AutocompleteProps) => {
             selectOnFocus
             value={value || null}
             isOptionEqualToValue={isOptionEqualToValue}
-            onChange={(_, data) => onChange(data)}
+            onChange={(_, data) => {
+              onChangeAutocomplete(data)
+              onChange(data)
+            }}
             renderInput={
               renderInput
                 ? (params: AutocompleteRenderInputParams) => renderInput(params)

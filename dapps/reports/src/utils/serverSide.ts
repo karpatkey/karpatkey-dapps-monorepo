@@ -31,8 +31,6 @@ import {
   getTreasuryVariationForThePeriodDetails,
   getTreasuryVariationHistory
 } from '@karpatkey-monorepo/shared/utils/mappers/treasuryVariation'
-import { AutocompleteOption } from '@karpatkey-monorepo/shared/components/CustomAutocomplete'
-import { MONTHS } from '@karpatkey-monorepo/shared/config/constants'
 
 export const getCommonServerSideProps = async (params: Filter) => {
   const { monthSelected, yearSelected, daoSelected } = params
@@ -96,69 +94,6 @@ export const getCommonServerSideProps = async (params: Filter) => {
       return acc
     },
     {}
-  )
-
-  const daoOptions: Maybe<AutocompleteOption> = Object.keys(filters).reduce(
-    (acc: any, daoKeyName: string) => {
-      const DAO = getDAOByKeyName(daoKeyName as unknown as DAO_NAME)
-      if (!DAO) return acc
-
-      const daoFound = acc.find((option: AutocompleteOption) => option.id === DAO.keyName)
-      if (!daoFound) {
-        acc.push({
-          id: DAO.keyName,
-          label: DAO.name,
-          logo: DAO.icon
-        })
-      }
-      return acc
-    },
-    []
-  )
-
-  const yearOptions: Maybe<AutocompleteOption> = Object.keys(filters).reduce(
-    (acc: any, daoKeyName: string) => {
-      const DAO = getDAOByKeyName(daoKeyName as unknown as DAO_NAME)
-      if (!DAO) return acc
-
-      const years = Object.keys(filters[daoKeyName])
-      years.forEach((year: string) => {
-        const yearFound = acc.find((option: AutocompleteOption) => option.id === year)
-        if (!yearFound) {
-          acc.push({
-            id: year,
-            label: year
-          })
-        }
-      })
-      return acc
-    },
-    []
-  )
-
-  const monthOptions: Maybe<AutocompleteOption> = Object.keys(filters).reduce(
-    (acc: any, daoKeyName: string) => {
-      const DAO = getDAOByKeyName(daoKeyName as unknown as DAO_NAME)
-      if (!DAO) return acc
-
-      const years = Object.keys(filters[daoKeyName])
-      years.forEach((year: string) => {
-        const months = filters[daoKeyName][year]
-        months.forEach((month: string) => {
-          const monthFound = acc.find((option: AutocompleteOption) => option.id === month)
-          if (!monthFound) {
-            const monthItem = MONTHS.find((m: any) => m.id === month)
-
-            acc.push({
-              id: month,
-              label: monthItem?.label
-            })
-          }
-        })
-      })
-      return acc
-    },
-    []
   )
 
   // Step 4: Apply filters to the data by common params, like daoName, periodType and period
@@ -264,9 +199,7 @@ export const getCommonServerSideProps = async (params: Filter) => {
   const walletTokenDetail = getWalletTokenDetails(variationMetricsDetailFiltered)
 
   return {
-    daoOptions,
-    yearOptions,
-    monthOptions,
+    filters,
     totalFunds,
     capitalUtilization,
     farmingResults,

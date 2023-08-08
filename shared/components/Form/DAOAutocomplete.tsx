@@ -67,13 +67,13 @@ const RenderOption = (props: any, option: any) => {
 interface DAOAutocompleteProps {
   name: string
   control: any
+  options: any
 }
 
 export default function DAOAutocomplete(props: DAOAutocompleteProps) {
   return (
     <CustomAutocomplete
       {...props}
-      options={DAOs}
       renderInput={RenderInput}
       renderOption={RenderOption}
     />

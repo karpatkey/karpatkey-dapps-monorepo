@@ -24,8 +24,14 @@ const Label = () => <CustomTypography variant="filterTextRenderInput">Year</Cust
 interface YearAutocompleteProps {
   name: string
   control: any
+  options: any
 }
 
 export default function YearAutocomplete(props: YearAutocompleteProps) {
-  return <CustomAutocomplete {...props} options={YEARS} label={<Label />} />
+  return (
+    <CustomAutocomplete
+      {...props}
+      label={<Label />}
+    />
+  )
 }

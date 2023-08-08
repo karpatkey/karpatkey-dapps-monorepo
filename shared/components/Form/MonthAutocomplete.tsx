@@ -8,8 +8,14 @@ const Label = () => <CustomTypography variant="filterTextRenderInput">Month</Cus
 interface MonthAutocompleteProps {
   name: string
   control: any
+  options: any
 }
 
 export default function MonthAutocomplete(props: MonthAutocompleteProps) {
-  return <CustomAutocomplete {...props} options={MONTHS} label={<Label />} />
+  return (
+    <CustomAutocomplete
+      {...props}
+      label={<Label />}
+    />
+  )
 }

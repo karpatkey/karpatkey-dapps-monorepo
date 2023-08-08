@@ -1,29 +1,33 @@
-import PageLayout from '@karpatkey-monorepo/reports/src/components/Layout/Layout'
 import { Filter, ReportProps } from '@karpatkey-monorepo/reports/src/types'
 import { getCommonServerSideProps } from '@karpatkey-monorepo/reports/src/utils/serverSide'
 import { filterSchemaValidation } from '@karpatkey-monorepo/reports/src/validations'
 import dynamic from 'next/dynamic'
 import { GetServerSidePropsContext } from 'next/types'
-import React, { ReactElement } from 'react'
+import React from 'react'
 
 const HomepageContent = dynamic(() => import('@karpatkey-monorepo/reports/src/views/Homepage'))
 const WelcomeContent = dynamic(() => import('@karpatkey-monorepo/reports/src/views/Welcome'))
-const Homepage = (props: ReportProps) => {
+
+const MainPage = (props: ReportProps) => {
   const { monthSelected, daoSelected, yearSelected } = props
   const isFilterEmpty = !monthSelected && !daoSelected && !yearSelected
 
-  return isFilterEmpty ? <WelcomeContent /> : <HomepageContent {...props} />
+  return isFilterEmpty ? <WelcomeContent {...props} /> : <HomepageContent {...props} />
 }
 
-Homepage.getTitle = 'Home'
+MainPage.getTitle = 'Home'
 
-Homepage.getLayout = (page: ReactElement) => <PageLayout>{page}</PageLayout>
-
-export default Homepage
+export default MainPage
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const { query } = ctx
-  const { month: monthSelected = null, year: yearSelected = null, dao: daoSelected = null } = query
+  let { month: monthSelected = null, year: yearSelected = null, dao: daoSelected = null } = query
+
+  if(!monthSelected || !yearSelected || !daoSelected) {
+    monthSelected = null
+    yearSelected = null
+    daoSelected = null
+  }
 
   const params = { daoSelected, monthSelected, yearSelected } as Filter
 

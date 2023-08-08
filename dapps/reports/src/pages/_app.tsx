@@ -44,8 +44,8 @@ export default function MyApp(props: MyAppProps) {
               <NoSsr>
                 {isPasswordProtected ? <Component {...pageProps} /> : null}
                 {!isPasswordProtected ? (
-                  <Layout>
-                    <Component {...pageProps} />
+                  <Layout {...pageProps}>
+                    <Component {...pageProps}/>
                   </Layout>
                 ) : null}
               </NoSsr>

@@ -1,5 +1,5 @@
 import Share from '@karpatkey-monorepo/reports//src/components/Share'
-import { useFilter } from '@karpatkey-monorepo/reports/src/contexts/filter.context'
+import {ActionKind, useFilter} from '@karpatkey-monorepo/reports/src/contexts/filter.context'
 import { AutocompleteOption } from '@karpatkey-monorepo/shared/components/CustomAutocomplete'
 import Filter from '@karpatkey-monorepo/shared/components/Filter/Filter'
 import Form, { SubmitValues } from '@karpatkey-monorepo/shared/components/Filter/Form'
@@ -11,10 +11,11 @@ import { useRouter } from 'next/router'
 import React from 'react'
 
 const Menu = () => {
-  const { state } = useFilter()
+  const { state, dispatch } = useFilter()
   const router = useRouter()
 
-  const { daoSelected, monthSelected, yearSelected } = state.value
+  const { value } = state
+  const { filters, daoSelected, monthSelected, yearSelected, yearOptions, monthOptions, daoOptions } = value
 
   const [anchorEl, setAnchorEl] = React.useState(null)
 
@@ -68,6 +69,42 @@ const Menu = () => {
     router.push(href)
   }
 
+  const handleChangeYear = React.useCallback((value: Maybe<AutocompleteOption>) => {
+    if(!value) return
+    dispatch({
+      type: ActionKind.ON_CHANGE,
+      payload: {
+        status: 'success',
+        value: { yearSelected: +value.id, daoSelected, monthSelected, filters },
+        error: null
+      }
+    })
+  }, [daoSelected, monthSelected, yearSelected, filters, dispatch])
+
+  const handleChangeMonth = React.useCallback((value: Maybe<AutocompleteOption>) => {
+    if(!value) return
+    dispatch({
+      type: ActionKind.ON_CHANGE,
+      payload: {
+        status: 'success',
+        value: { monthSelected: +value.id, daoSelected, yearSelected, filters },
+        error: null
+      }
+    })
+  }, [daoSelected, monthSelected,  yearSelected, filters, dispatch])
+
+  const handleChangeDAO = React.useCallback((value: Maybe<AutocompleteOption>) => {
+    if(!value) return
+    dispatch({
+      type: ActionKind.ON_CHANGE,
+      payload: {
+        status: 'success',
+        value: { monthSelected, daoSelected: value.id, yearSelected, filters },
+        error: null
+      }
+    })
+  }, [daoSelected, monthSelected,  yearSelected, filters, dispatch])
+
   const formProps = {
     onRequestClose: handleClose,
     onSubmitClose,
@@ -77,37 +114,41 @@ const Menu = () => {
     enableDAO: true,
     enableYear: true,
     enableMonth: true,
-    buttonTitle: 'Apply selection'
+    buttonTitle: 'Apply selection',
+    yearOptions,
+    monthOptions,
+    daoOptions,
+    handleChangeYear,
+    handleChangeMonth,
+    handleChangeDAO
   }
 
   return (
-    <BoxWrapperRow gap={2}>
-      <BoxWrapperRow id={id || ''} gap={2}>
-        <Filter
-          id={id}
-          title={'Select report'}
-          handleClick={handleClick}
-          handleClose={handleClose}
-          handleClear={handleClear}
-          anchorEl={anchorEl}
-          open={open}
-          enableDAO
-          enableMonth
-          enableYear
-          DAO={defaultDAOValue?.label ?? ''}
-          year={defaultYearValue?.label ?? ''}
-          month={defaultMonthValue?.label ?? ''}
-          tooltipText={'Clear selected report'}
-          position={'middle'}
-        >
-          <Form {...formProps} />
-        </Filter>
-        <Share
-          daoSelected={daoSelected}
-          monthSelected={monthSelected}
-          yearSelected={yearSelected}
-        />
-      </BoxWrapperRow>
+    <BoxWrapperRow id={id || ''} gap={2}>
+      <Filter
+        id={id}
+        title={'Select report'}
+        handleClick={handleClick}
+        handleClose={handleClose}
+        handleClear={handleClear}
+        anchorEl={anchorEl}
+        open={open}
+        enableDAO
+        enableMonth
+        enableYear
+        DAO={defaultDAOValue?.label ?? ''}
+        year={defaultYearValue?.label ?? ''}
+        month={defaultMonthValue?.label ?? ''}
+        tooltipText={'Clear selected report'}
+        position={'middle'}
+      >
+        <Form {...formProps} />
+      </Filter>
+      <Share
+        daoSelected={daoSelected}
+        monthSelected={monthSelected}
+        yearSelected={yearSelected}
+      />
     </BoxWrapperRow>
   )
 }

@@ -1,13 +1,14 @@
 import Body from '@karpatkey-monorepo/reports/src/components/Layout/Body'
 import Header, { HEADER_HEIGHT } from '@karpatkey-monorepo/reports/src/components/Layout/Header'
 import Sidebar, { SIDEBAR_WIDTH } from '@karpatkey-monorepo/reports/src/components/Layout/Sidebar'
-import { useFilter } from '@karpatkey-monorepo/reports/src/contexts/filter.context'
+import {ActionKind, useFilter} from '@karpatkey-monorepo/reports/src/contexts/filter.context'
 import Footer, { FOOTER_HEIGHT } from '@karpatkey-monorepo/shared/layout/Footer'
 import { Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import React, { ReactElement } from 'react'
+import React from 'react'
+import {ReportProps} from "@karpatkey-monorepo/reports/src/types"
 
-interface LayoutProps {
+export interface LayoutProps {
   children: React.ReactElement
 }
 
@@ -30,11 +31,31 @@ const LayoutWithoutSidebarWrapper = styled(Box)(() => ({
                       "footer"`
 }))
 
-const Layout = ({ children }: LayoutProps): ReactElement => {
-  const { state } = useFilter()
-  const { daoSelected, yearSelected, monthSelected } = state.value
+const DISCLAIMER_TEXT = 'Token Balances and Prices are considered at end of month 0 UTC'
 
-  const isSidebarVisible = !!(daoSelected && yearSelected && monthSelected)
+const Layout = (props: LayoutProps & ReportProps) => {
+  const { children, monthSelected, daoSelected, yearSelected, filters } = props
+  const { dispatch, state } = useFilter()
+
+  const { value, status } = state
+  const { monthSelected: MONTH, daoSelected: DAO, yearSelected: YEAR } = value
+
+  React.useEffect(() => {
+    dispatch({
+      type: ActionKind.CREATE,
+      payload: {
+        status: 'success',
+        value: { monthSelected, daoSelected, yearSelected, filters },
+        error: null
+      }
+    })
+  }, [monthSelected, daoSelected, yearSelected, filters, dispatch])
+
+  if (status === 'loading') {
+    return null
+  }
+
+  const isSidebarVisible = !!(DAO && YEAR && MONTH) && status === 'success'
 
   return isSidebarVisible ? (
     <LayoutWithSidebarWrapper>
@@ -79,7 +100,7 @@ const Layout = ({ children }: LayoutProps): ReactElement => {
         <Body>{children}</Body>
       </Box>
       <Box sx={{ gridArea: 'footer', width: '100%' }}>
-        <Footer disclaimerText={'Token Balances and Prices are considered at end of month 0 UTC'} />
+        <Footer disclaimerText={DISCLAIMER_TEXT} />
       </Box>
     </LayoutWithSidebarWrapper>
   ) : (

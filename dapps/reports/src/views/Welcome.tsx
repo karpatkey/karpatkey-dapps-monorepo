@@ -3,6 +3,16 @@ import BoxWrapperColumn from '@karpatkey-monorepo/shared/components/Wrappers/Box
 import { Box } from '@mui/material'
 import Lottie from 'lottie-react'
 import React from 'react'
+import AnimatePresenceWrapper from "@karpatkey-monorepo/shared/components/AnimatePresenceWrapper"
+
+const LOTTIE_STYLES = {
+  display: 'block',
+  alignItems: 'auto',
+  marginTop: '-50px',
+  zIndex: '-1',
+  width: '100%',
+  height: '100%'
+}
 
 const Welcome = () => {
   const [lottieFile, setLottieFile] = React.useState<Maybe<any>>(null)
@@ -12,22 +22,13 @@ const Welcome = () => {
       const karpatkeyFields = await import(
         '@karpatkey-monorepo/reports/src/utils/Lottie/karpatkeyFields.json'
       )
-
       setLottieFile(karpatkeyFields)
     })()
   }, [])
 
-  const style = {
-    display: 'block',
-    alignItems: 'auto',
-    marginTop: '-50px',
-    zIndex: '-1',
-    width: '100%',
-    height: '100%'
-  }
-
   return (
-    <BoxWrapperColumn sx={{ alignItems: 'center', marginTop: 10 }} gap={10}>
+    <AnimatePresenceWrapper>
+      <BoxWrapperColumn sx={{ alignItems: 'center', marginTop: 10 }} gap={10}>
       <CustomTypography variant="h1" textAlign="center">
         View our DAO treasury reports
       </CustomTypography>
@@ -67,9 +68,10 @@ const Welcome = () => {
           justifyContent: 'center'
         }}
       >
-        <Lottie style={style} loop={false} animationData={lottieFile} />
+        <Lottie style={LOTTIE_STYLES} loop={false} animationData={lottieFile} />
       </Box>
     </BoxWrapperColumn>
+    </AnimatePresenceWrapper>
   )
 }
 

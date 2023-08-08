@@ -159,6 +159,12 @@ interface FormProps {
   enableYear?: boolean
   enableMonth?: boolean
   buttonTitle?: string
+  yearOptions?: AutocompleteOption[]
+  monthOptions?: AutocompleteOption[]
+  daoOptions?: AutocompleteOption[]
+  handleChangeDAO?: (dao: AutocompleteOption) => void
+  handleChangeYear?: (year: AutocompleteOption) => void
+  handleChangeMonth?: (month: AutocompleteOption) => void
 }
 
 const Form = (props: FormProps) => {
@@ -173,6 +179,9 @@ const Form = (props: FormProps) => {
     blockchainOptions = [],
     protocolOptions = [],
     tokenOptions = [],
+    yearOptions = [],
+    monthOptions = [],
+    daoOptions = [],
     onSubmitClose,
     enableToken = false,
     enableBlockchain = false,
@@ -180,7 +189,10 @@ const Form = (props: FormProps) => {
     enableDAO = false,
     enableYear = false,
     enableMonth = false,
-    buttonTitle
+    buttonTitle,
+    handleChangeDAO,
+    handleChangeYear,
+    handleChangeMonth
   } = props
 
   // Yup validation
@@ -262,22 +274,41 @@ const Form = (props: FormProps) => {
               ) : null}
               {enableToken ? (
                 <Stack width={200}>
-                  <TokenAutocomplete options={tokenOptions} control={control} name={'token'} />
+                  <TokenAutocomplete
+                    options={tokenOptions}
+                    control={control}
+                    name={'token'}
+                  />
                 </Stack>
               ) : null}
               {enableDAO ? (
                 <Stack width={200}>
-                  <DAOAutocomplete control={control} name={'DAO'} />
+                  <DAOAutocomplete
+                    onChange={handleChangeDAO}
+                    options={daoOptions}
+                    control={control}
+                    name={'DAO'}
+                  />
                 </Stack>
               ) : null}
               {enableMonth ? (
                 <Stack width={200}>
-                  <MonthAutocomplete control={control} name={'month'} />
+                  <MonthAutocomplete
+                    onChange={handleChangeMonth}
+                    options={monthOptions}
+                    control={control}
+                    name={'month'}
+                  />
                 </Stack>
               ) : null}
               {enableYear ? (
                 <Stack width={200}>
-                  <YearAutocomplete control={control} name={'year'} />
+                  <YearAutocomplete
+                    onChange={handleChangeYear}
+                    options={yearOptions}
+                    control={control}
+                    name={'year'}
+                  />
                 </Stack>
               ) : null}
             </BoxWrapperRow>

@@ -5,14 +5,16 @@ import EmptyData from '@karpatkey-monorepo/shared/components/EmptyData'
 import PaperSection from '@karpatkey-monorepo/shared/components/PaperSection'
 import TabPanel from '@karpatkey-monorepo/shared/components/TabPanel'
 import BoxWrapperColumn from '@karpatkey-monorepo/shared/components/Wrappers/BoxWrapperColumn'
-import { BoxProps } from '@mui/material'
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import * as React from 'react'
 
-type BalanceOverview = { balanceOverviewType: any; balanceOverviewBlockchain: any } & BoxProps
+interface BalanceOverviewProps {
+  balanceOverviewType: any[]
+  balanceOverviewBlockchain: any[]
+}
 
-const BalanceOverview = (props: BalanceOverview) => {
+const BalanceOverview = (props: BalanceOverviewProps) => {
   const { balanceOverviewType, balanceOverviewBlockchain } = props
 
   const [toggleType, setToggleType] = React.useState(1)
