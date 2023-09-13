@@ -44,7 +44,7 @@
     "luxon": "^3.4.3",
     "next": "^13.4.19",
     "numbro": "^2.4.0",
-    "puppeteer": "^21.1.1",
+    "puppeteer": "^21.2.0",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "18.2.0",
