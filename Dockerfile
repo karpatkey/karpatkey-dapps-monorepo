@@ -13,7 +13,7 @@ COPY . .
 RUN yarn install
 
 # Production image
-FROM node:lts-alpine
+FROM node:20.0.0-alpine
 
 WORKDIR /app
 
