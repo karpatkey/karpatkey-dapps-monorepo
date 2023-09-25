@@ -94,8 +94,7 @@ const TableTokenDetail = (props: TableTokenDetailProps) => {
                             <Tooltip title={formatCurrency(row.priceAvg, 4)} sx={{ ml: 1 }}>
                               <OpenInNewIcon
                                 onClick={onClick}
-                                fontSize={'small'}
-                                sx={{ cursor: 'pointer' }}
+                                sx={{ cursor: 'pointer', fontSize: '1rem !important' }}
                               />
                             </Tooltip>
                           )}
@@ -121,11 +120,21 @@ const TableTokenDetail = (props: TableTokenDetailProps) => {
                       </TableCellCustom>
                       <TableCellCustom sx={{ width: '20%' }} align="left">
                         <BoxWrapperRow gap={1} sx={{ justifyContent: 'flex-start' }}>
-                          {formatPercentage(row.priceVariation)}
-                          {row.priceVariation > 0 ? (
-                            <ArrowUpwardIcon fontSize={'small'} />
+                          {formatPercentage(row.priceVariation) === '0.00%' ? (
+                            <Tooltip
+                              title={formatPercentage(row.priceVariation, 10)}
+                              sx={{ ml: 1 }}
+                            >
+                              <span>{formatPercentage(row.priceVariation)}</span>
+                            </Tooltip>
                           ) : (
-                            <ArrowDownwardIcon fontSize={'small'} />
+                            formatPercentage(row.priceVariation)
+                          )}
+
+                          {row.priceVariation > 0 ? (
+                            <ArrowUpwardIcon sx={{ fontSize: '1rem !important' }} />
+                          ) : !row.priceVariation ? null : (
+                            <ArrowDownwardIcon sx={{ fontSize: '1rem !important' }} />
                           )}
                         </BoxWrapperRow>
                       </TableCellCustom>
@@ -163,11 +172,7 @@ const TableTokenDetail = (props: TableTokenDetailProps) => {
                       </BoxWrapperRow>
                     </TableCellCustom>
                   </TableRow>
-                ) : (
-                  <TableRow>
-                    <TableEmptyCellCustom colSpan={5} />
-                  </TableRow>
-                )}
+                ) : null}
               </>
             )}
           </TableBody>

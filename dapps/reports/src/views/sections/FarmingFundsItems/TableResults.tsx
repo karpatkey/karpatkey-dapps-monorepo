@@ -109,11 +109,7 @@ const TableResults = (props: TableResultsProps) => {
                     </BoxWrapperRow>
                   </TableCellCustom>
                 </TableRow>
-              ) : (
-                <TableRow>
-                  <TableEmptyCellCustom colSpan={5} />
-                </TableRow>
-              )}
+              ) : null}
               <TableRow>
                 <TableFooterCellCustom sx={{ width: '20%' }} align="left">
                   Total

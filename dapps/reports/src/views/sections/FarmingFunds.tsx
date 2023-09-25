@@ -33,11 +33,22 @@ const FarmingFunds = (props: FarmingFundsProps) => {
         {/*<ResultsContainer {...{ fundsDetails }} />*/}
         <PaperSection subTitle="Farming results from Farm-Swaps">
           <CustomTypography variant="farmSwapsValue">
-            {numbro(totalFarmSwaps || 0).formatCurrency({
-              spaceSeparated: false,
-              mantissa: 0,
-              thousandSeparated: true
-            })}
+            {totalFarmSwaps <= 0 ? (
+              <CustomTypography
+                variant="body2"
+                color="textSecondary"
+                align="left"
+                sx={{ fontStyle: 'italic' }}
+              >
+                No farming results from Farm-Swaps within the selected period
+              </CustomTypography>
+            ) : (
+              numbro(totalFarmSwaps || 0).formatCurrency({
+                spaceSeparated: false,
+                mantissa: 0,
+                thousandSeparated: true
+              })
+            )}
           </CustomTypography>
         </PaperSection>
       </AnimatePresenceWrapper>

@@ -133,11 +133,7 @@ const TableFunds = (props: TableFundsProps) => {
                       </BoxWrapperRow>
                     </TableCellCustom>
                   </TableRow>
-                ) : (
-                  <TableRow>
-                    <TableEmptyCellCustom colSpan={5} />
-                  </TableRow>
-                )}
+                ) : null}
 
                 <TableRow>
                   <TableFooterCellCustom colSpan={2} align="left">

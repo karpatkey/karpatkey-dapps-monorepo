@@ -1,6 +1,5 @@
 import { formatCurrency } from '@karpatkey-monorepo/reports/src/utils/format'
 import TableCellCustom from '@karpatkey-monorepo/shared/components/Table/TableCellCustom'
-import TableEmptyCellCustom from '@karpatkey-monorepo/shared/components/Table/TableEmptyCellCustom'
 import TableFooterCellCustom from '@karpatkey-monorepo/shared/components/Table/TableFooterCellCustom'
 import TableHeadCellCustom from '@karpatkey-monorepo/shared/components/Table/TableHeadCellCustom'
 import { BoxProps, Table, TableBody, TableContainer, TableHead, TableRow } from '@mui/material'
@@ -101,9 +100,6 @@ const TableBlockchain = (props: TableBlockchainProps) => {
               </TableRow>
             )
           })}
-          <TableRow>
-            <TableEmptyCellCustom colSpan={2 + balanceOverviewBlockchainSorted?.length ?? 0} />
-          </TableRow>
           <TableRow>
             <TableFooterCellCustom sx={{ width: columnWidthPercentage }} align="left">
               Total

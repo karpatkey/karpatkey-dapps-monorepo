@@ -11,7 +11,7 @@ export const formatCurrency = (value: number, mantissa = 0) => {
 }
 
 export const formatPercentage = (value: number, mantissa = 2) => {
-  if (value === 0) return '-'
+  if (!value || value === 0) return '-'
 
   return numbro(value).format({
     output: 'percent',

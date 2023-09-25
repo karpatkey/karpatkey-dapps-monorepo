@@ -262,6 +262,170 @@ export const TOKEN_COINGECKO_PRICE_URL = [
   {
     tokenName: 'XDAI',
     url: 'https://www.coingecko.com/en/coins/xdai'
+  },
+  {
+    tokenName: 'wstETH',
+    url: 'https://www.coingecko.com/en/coins/wrapped-steth'
+  },
+  {
+    tokenName: 'EURe',
+    url: 'https://www.coingecko.com/en/coins/monerium-eur-money'
+  },
+  {
+    tokenName: 'AAVE',
+    url: 'https://www.coingecko.com/en/coins/aave'
+  },
+  {
+    tokenName: 'ENS',
+    url: 'https://www.coingecko.com/en/coins/ethereum-name-service'
+  },
+  {
+    tokenName: 'sETH2',
+    url: 'https://www.coingecko.com/en/coins/seth2'
+  },
+  {
+    tokenName: 'RPL',
+    url: 'https://www.coingecko.com/en/coins/rocket-pool'
+  },
+  {
+    tokenName: 'LDO',
+    url: 'https://www.coingecko.com/en/coins/lido-dao'
+  },
+  {
+    tokenName: 'rETH2',
+    url: 'https://www.coingecko.com/en/coins/reth2'
+  },
+  {
+    tokenName: 'WXDAI',
+    url: 'https://www.coingecko.com/en/coins/wrapped-xdai'
+  },
+  {
+    tokenName: 'MATIC',
+    url: 'https://www.coingecko.com/en/coins/polygon'
+  },
+  {
+    tokenName: 'GHO',
+    url: 'https://www.coingecko.com/en/coins/gho'
+  },
+  {
+    tokenName: 'rETH',
+    url: 'https://www.coingecko.com/en/coins/rocket-pool-eth'
+  },
+  {
+    tokenName: 'ankrETH',
+    url: 'https://www.coingecko.com/en/coins/ankr-staked-eth'
+  },
+  {
+    tokenName: 'FLX',
+    url: 'https://www.coingecko.com/en/coins/reflexer-ungovernance-token'
+  },
+  {
+    tokenName: 'PNK',
+    url: 'https://www.coingecko.com/en/coins/kleros'
+  },
+  {
+    tokenName: 'agEUR',
+    url: 'https://www.coingecko.com/en/coins/ageur'
+  },
+  {
+    tokenName: 'ICHI',
+    url: 'https://www.coingecko.com/en/coins/ichi'
+  },
+  {
+    tokenName: 'GIV',
+    url: 'https://www.coingecko.com/en/coins/giveth'
+  },
+  {
+    tokenName: 'GEN',
+    url: 'https://www.coingecko.com/en/coins/daostack'
+  },
+  {
+    tokenName: 'GTC',
+    url: 'https://www.coingecko.com/en/coins/gitcoin'
+  },
+  {
+    tokenName: 'UNCX',
+    url: 'https://www.coingecko.com/en/coins/uncx-network'
+  },
+  {
+    tokenName: 'RPL',
+    url: 'https://www.coingecko.com/en/coins/rocket-pool'
+  },
+  {
+    tokenName: 'SWISE',
+    url: 'https://www.coingecko.com/en/coins/stakewise'
+  },
+  {
+    tokenName: 'RAD',
+    url: 'https://www.coingecko.com/en/coins/radworks'
+  },
+  {
+    tokenName: 'RDN',
+    url: 'https://www.coingecko.com/en/coins/raiden-network'
+  },
+  {
+    tokenName: 'IDLE',
+    url: 'https://www.coingecko.com/en/coins/idle'
+  },
+  {
+    tokenName: 'SUSHI',
+    url: 'https://www.coingecko.com/en/coins/sushi'
+  },
+  {
+    tokenName: 'USDP',
+    url: 'https://www.coingecko.com/en/coins/pax-dollar'
+  },
+  {
+    tokenName: 'StaFI (FIS)',
+    url: 'https://www.coingecko.com/en/coins/stafi'
+  },
+  {
+    tokenName: 'cvxCRV',
+    url: 'https://www.coingecko.com/en/coins/convex-crv'
+  },
+  {
+    tokenName: 'bb-a-USDT',
+    url: 'https://www.coingecko.com/en/coins/balancer-boosted-aave-usdt'
+  },
+  {
+    tokenName: 'MKR',
+    url: 'https://www.coingecko.com/en/coins/maker'
+  },
+  {
+    tokenName: 'FRAX',
+    url: 'https://www.coingecko.com/en/coins/frax'
+  },
+  {
+    tokenName: 'bb-a-DAI',
+    url: 'https://www.coingecko.com/en/coins/balancer-boosted-aave-dai'
+  },
+  {
+    tokenName: 'FXS',
+    url: 'https://www.coingecko.com/en/coins/frax-share'
+  },
+  {
+    tokenName: 'cvxFXS',
+    url: 'https://www.coingecko.com/en/coins/convex-fxs'
+  },
+  {
+    tokenName: 'SWPR',
+    url: 'https://www.coingecko.com/en/coins/swapr'
+  },
+  {
+    tokenName: 'LUSD',
+    url: 'https://www.coingecko.com/en/coins/liquity-usd'
+  },
+  {
+    tokenName: 'bb-a-USDC',
+    url: 'https://www.coingecko.com/en/coins/balancer-boosted-aave-usdc'
+  },
+  {
+    tokenName: 'bb-a-USDC(v3)',
+    url: 'https://www.coingecko.com/en/coins/balancer-boosted-aave-usdc'
+  },
+  {
+    tokenName: 'ELK',
+    url: 'https://www.coingecko.com/en/coins/elk-finance'
   }
 ]
 

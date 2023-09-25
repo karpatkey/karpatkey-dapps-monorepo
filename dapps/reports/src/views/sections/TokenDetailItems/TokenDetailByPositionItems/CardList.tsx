@@ -56,10 +56,9 @@ const CardList = (props: CardListProps) => {
       animate={controls}
       variants={containerVariants}
       sx={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(4, minmax(240px, auto))',
-        gridAutoRows: 'minMax(440px, auto)',
-        alignItems: 'stretch',
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignContent: 'center',
         gap: '20px 20px'
       }}
     >
@@ -71,8 +70,9 @@ const CardList = (props: CardListProps) => {
             variants={itemVariants}
             custom={{ index }}
             sx={{
-              maxWidth: '340px',
-              minHeight: '450px',
+              maxWidth: '320px',
+              minWidth: '320px',
+              minHeight: '440px',
               height: 'content-fit',
               padding: '8px 8px',
               border: '1px solid #B6B6B6',

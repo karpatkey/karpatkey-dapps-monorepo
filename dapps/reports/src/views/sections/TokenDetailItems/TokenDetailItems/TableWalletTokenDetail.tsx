@@ -113,11 +113,7 @@ const TableWalletTokenDetail = (props: TableWalletTokenDetailProps & BoxProps) =
                       </BoxWrapperRow>
                     </TableCellCustom>
                   </TableRow>
-                ) : (
-                  <TableRow>
-                    <TableEmptyCellCustom colSpan={3} />
-                  </TableRow>
-                )}
+                ) : null}
               </>
             )}
           </TableBody>
