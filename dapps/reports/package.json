@@ -32,7 +32,7 @@
     "@karpatkey-monorepo/shared": "0.1.0",
     "@google-cloud/bigquery": "^7.2.0",
     "@mui/icons-material": "5.14.8",
-    "@mui/material": "5.14.8",
+    "@mui/material": "5.14.11",
     "@mui/x-date-pickers": "^6.15.0",
     "commander": "^11.0.0",
     "cookie": "^0.5.0",
