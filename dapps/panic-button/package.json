@@ -22,7 +22,7 @@
     "@karpatkey-monorepo/shared": "0.1.0",
     "@mui/icons-material": "^5.14.9",
     "@mui/material": "^5.14.10",
-    "next": "^13.5.3",
+    "next": "^13.5.4",
     "react": "^18.2.0",
     "react-dom": "18.2.0"
   },
