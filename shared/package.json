@@ -19,7 +19,7 @@
     "@google-cloud/bigquery": "^7.3.0",
     "@mui/icons-material": "5.14.8",
     "@mui/material": "5.14.8",
-    "@mui/utils": "^5.14.11",
+    "@mui/utils": "^5.14.12",
     "classnames": "^2.3.2",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.4",
