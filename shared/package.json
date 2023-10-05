@@ -17,7 +17,7 @@
     "@emotion/styled": "^11.11.0",
     "@ethersproject/address": "^5.7.0",
     "@google-cloud/bigquery": "^7.3.0",
-    "@mui/icons-material": "5.14.8",
+    "@mui/icons-material": "5.14.12",
     "@mui/material": "5.14.8",
     "@mui/utils": "^5.14.11",
     "classnames": "^2.3.2",
