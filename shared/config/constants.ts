@@ -466,5 +466,6 @@ export const MIN_ALLOWED_ALLOCATION = 0.00009
 
 export const MONTHS_ALLOWED = [
   { label: 'July', id: 7 },
-  { label: 'August', id: 8 }
+  { label: 'August', id: 8 },
+  { label: 'September', id: 9 }
 ]
