@@ -316,15 +316,20 @@ export const getTokenDetailByPosition = (data: any) => {
     const value = obj.metric_value ? obj.metric_value : 0
 
     if (cardFound) {
+      // Search for "Ratios"
       const categoryFound = cardFound?.categories.find((category: any) => {
         return category.name === positionType
       })
 
       if (categoryFound) {
-        categoryFound?.ratios?.push({
-          name: ratioName,
-          value
-        })
+        // Check if ratioName already exists
+        const ratioNameValue = categoryFound?.ratios?.find((ratio: any) => ratio.name === ratioName)
+        if (!ratioNameValue) {
+          categoryFound?.ratios?.push({
+            name: ratioName,
+            value
+          })
+        }
       } else {
         cardFound?.categories?.push({
           name: positionType,
