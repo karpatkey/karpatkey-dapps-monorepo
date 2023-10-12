@@ -33,7 +33,7 @@ const FarmingFunds = (props: FarmingFundsProps) => {
         {/*<ResultsContainer {...{ fundsDetails }} />*/}
         <PaperSection subTitle="Farming results from Farm-Swaps">
           <CustomTypography variant="farmSwapsValue">
-            {totalFarmSwaps <= 0 ? (
+            {totalFarmSwaps === 0 ? (
               <CustomTypography
                 variant="body2"
                 color="textSecondary"
