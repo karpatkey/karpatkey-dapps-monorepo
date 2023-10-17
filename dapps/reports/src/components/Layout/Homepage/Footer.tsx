@@ -68,16 +68,36 @@ export const Footer = () => {
               </Link>
             </BoxWrapperRow>
             <BoxWrapperRow gap={4}>
-              <Link href={`https://github.com/KarpatkeyDAO`} target="_blank">
+              <Link
+                href={`https://github.com/KarpatkeyDAO`}
+                target="_blank"
+                height={'24px'}
+                width={'24px'}
+              >
                 <Github height={'20px'} width={'100%'} />
               </Link>
-              <Link href={`https://twitter.com/karpatkey`} target="_blank">
+              <Link
+                href={`https://twitter.com/karpatkey`}
+                target="_blank"
+                height={'24px'}
+                width={'24px'}
+              >
                 <Twitter height={'20px'} width={'100%'} />
               </Link>
-              <Link href={`https://mirror.xyz/karpatkey.eth`} target="_blank">
+              <Link
+                href={`https://mirror.xyz/karpatkey.eth`}
+                target="_blank"
+                height={'24px'}
+                width={'24px'}
+              >
                 <Mirror height={'20px'} width={'100%'} />
               </Link>
-              <Link href={`https://www.linkedin.com/company/karpatkey/mycompany/`} target="_blank">
+              <Link
+                href={`https://www.linkedin.com/company/karpatkey/mycompany/`}
+                target="_blank"
+                height={'24px'}
+                width={'24px'}
+              >
                 <Linkedin height={'20px'} width={'100%'} />
               </Link>
             </BoxWrapperRow>
