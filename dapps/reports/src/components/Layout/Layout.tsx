@@ -3,7 +3,6 @@ import Header, { HEADER_HEIGHT } from '@karpatkey-monorepo/reports/src/component
 import { Header as HomepageHeader } from '@karpatkey-monorepo/reports/src/components/Layout/Homepage/Header'
 import { Footer as HomepageFooter } from '@karpatkey-monorepo/reports/src/components/Layout/Homepage/Footer'
 import Sidebar, { SIDEBAR_WIDTH } from '@karpatkey-monorepo/reports/src/components/Layout/Sidebar'
-import { useFilter } from '@karpatkey-monorepo/reports/src/contexts/filter.context'
 import Footer, { FOOTER_HEIGHT } from '@karpatkey-monorepo/shared/layout/Footer'
 import { Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
@@ -38,15 +37,12 @@ const MainContainer = styled(BoxWrapperColumn)(() => ({
 }))
 
 const Layout = ({ children }: LayoutProps): ReactElement => {
-  const { state } = useFilter()
-  const { dao, year, month } = state.value
-
   const queryParams = new URLSearchParams(window.location.search)
   const daoParam = queryParams.get('dao')
   const yearParam = queryParams.get('year')
   const monthParam = queryParams.get('month')
 
-  const isSidebarVisible = !!(dao && year && month) && !!(daoParam && yearParam && monthParam)
+  const isSidebarVisible = !!(daoParam && yearParam && monthParam)
 
   return isSidebarVisible ? (
     <LayoutWithSidebarWrapper>
