@@ -33,7 +33,7 @@
     "@google-cloud/bigquery": "^7.3.0",
     "@mui/icons-material": "5.14.8",
     "@mui/material": "5.14.8",
-    "@mui/x-date-pickers": "^6.16.1",
+    "@mui/x-date-pickers": "^6.16.2",
     "commander": "^11.1.0",
     "cookie": "^0.5.0",
     "date-fns": "^2.30.0",
