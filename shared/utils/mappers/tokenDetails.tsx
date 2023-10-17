@@ -487,14 +487,13 @@ export const getWalletTokenDetails = (data: any) => {
     const tokenSymbol = obj['token_symbol'].trim()
 
     if (!acc[blockchain]) acc[blockchain] = {}
-    if (!acc[blockchain][tokenSymbol]) acc[blockchain][tokenSymbol] = {}
-
-    acc[blockchain][tokenSymbol] = {
-      tokenBalance: 0,
-      usdValue: 0,
-      blockchain,
-      tokenSymbol
-    }
+    if (!acc[blockchain][tokenSymbol])
+      acc[blockchain][tokenSymbol] = {
+        tokenBalance: 0,
+        usdValue: 0,
+        blockchain,
+        tokenSymbol
+      }
 
     acc[blockchain][tokenSymbol].tokenBalance =
       acc[blockchain][tokenSymbol].tokenBalance + (obj['bal_1'] ? obj['bal_1'] : 0)
