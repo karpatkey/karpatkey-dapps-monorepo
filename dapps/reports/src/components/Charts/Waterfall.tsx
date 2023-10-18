@@ -26,7 +26,6 @@ export type WaterfallProps = {
 
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
-    console.log('payload', payload[1].value)
     return (
       <Paper
         elevation={24}
