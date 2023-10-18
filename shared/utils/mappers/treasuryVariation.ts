@@ -183,10 +183,9 @@ export const getTreasuryVariationForThePeriodDetails = (data: any) => {
 
         if (!acc[metricKey.key - 1]) acc[metricKey.key - 1] = { funds: 0, ...metricKey }
 
-        acc[metricKey.key - 1].funds = acc[metricKey.key - 1].funds + (obj['metric_value'] ?? 0)
         acc[metricKey.key - 1] = {
           ...acc[metricKey.key - 1],
-          ...metricKey
+          funds: acc[metricKey.key - 1].funds + (obj['metric_value'] ?? 0)
         }
 
         return acc
