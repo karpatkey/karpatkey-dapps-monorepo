@@ -39,7 +39,7 @@
     "date-fns": "^3.1.0",
     "dayjs": "^1.11.10",
     "dotenv": "^16.3.1",
-    "framer-motion": "^10.17.7",
+    "framer-motion": "^10.17.12",
     "highcharts": "^11.2.0",
     "highcharts-react-official": "^3.2.1",
     "lottie-react": "^2.4.0",
