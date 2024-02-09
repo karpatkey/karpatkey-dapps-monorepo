@@ -760,7 +760,7 @@ export const FILTER_DAOS: FILTER_DAO[] = [
     shouldBeIncludedDashboardTwo: false,
     shouldBeIncludedNCAum: true,
     shouldBeIncludedLastMonthDeFiResults: true,
-    isEnabled: false,
+    isEnabled: true,
     addresses: [
       {
         address: '0x464c71f6c2f760dda6093dcb91c24c39e5d6e18c',
