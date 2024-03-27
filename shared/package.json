@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
-    "@emotion/react": "^11.11.1",
+    "@emotion/react": "^11.11.4",
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@ethersproject/address": "^5.7.0",
