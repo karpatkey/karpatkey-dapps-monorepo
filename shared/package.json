@@ -22,7 +22,7 @@
     "@mui/utils": "^5.15.14",
     "classnames": "^2.3.2",
     "clsx": "^2.0.0",
-    "framer-motion": "^10.16.4",
+    "framer-motion": "^11.0.24",
     "luxon": "^3.4.3",
     "next": "13.4.12",
     "numbro": "^2.5.0",
