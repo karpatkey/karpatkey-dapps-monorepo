@@ -37,7 +37,7 @@
     "@types/luxon": "^3.3.2",
     "@types/node": "20.12.4",
     "@types/react": "18.2.74",
-    "@types/react-dom": "18.2.10",
+    "@types/react-dom": "18.2.24",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
     "eslint": "8.50.0",
