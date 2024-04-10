@@ -21,7 +21,7 @@
     "@mui/material": "5.14.8",
     "@mui/utils": "^5.15.14",
     "classnames": "^2.5.1",
-    "clsx": "^2.0.0",
+    "clsx": "^2.1.0",
     "framer-motion": "^11.0.24",
     "luxon": "^3.4.4",
     "next": "13.4.12",
