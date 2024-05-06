@@ -486,10 +486,10 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.1.tgz#16308cea045f0fc777b6ff20a9f25474dd8293d2"
   integrity sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==
 
-"@google-cloud/bigquery@^7.6.1":
-  version "7.6.1"
-  resolved "https://registry.yarnpkg.com/@google-cloud/bigquery/-/bigquery-7.6.1.tgz#a46a77f2562c962fbeae16cb91c10e29aab0210d"
-  integrity sha512-rxggrY6gBR2lijWfb37nXNg1vnCnpf01khihMIZ+497J2aY4/Y5hMLNkQe4aFw5owCjrXvqqLqBhOVzjh9kWJA==
+"@google-cloud/bigquery@^7.7.0":
+  version "7.7.0"
+  resolved "https://registry.yarnpkg.com/@google-cloud/bigquery/-/bigquery-7.7.0.tgz#b606acda3262fc47308909dbe9afa558c1a8871f"
+  integrity sha512-KK0t7j0RAwqRxt3vc0mtoR+DBSiBmbeJaRv7tAIWlQsyE43pxMu7t94i0kUvR1SKnQBZYX9+iBr+mjdmNORPSQ==
   dependencies:
     "@google-cloud/common" "^5.0.0"
     "@google-cloud/paginator" "^5.0.0"
