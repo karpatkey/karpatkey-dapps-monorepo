@@ -64,7 +64,7 @@
     "@types/cookie": "^0.6.0",
     "@types/luxon": "^3.4.2",
     "@types/node": "20.12.11",
-    "@types/react": "18.3.1",
+    "@types/react": "18.3.2",
     "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/react-dom": "18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
