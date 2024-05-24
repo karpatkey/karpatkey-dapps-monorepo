@@ -12,7 +12,7 @@ export const Disclaimer = () => {
         sx={{
           margin: {
             xs: '40px 20px 20px 20px',
-            md: '60px 30px 30px 30px'
+            md: '180px 30px 30px 30px'
           },
           alignItems: 'flex-start',
           gap: { xs: 2, md: 4 }
