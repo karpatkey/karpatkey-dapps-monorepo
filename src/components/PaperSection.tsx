@@ -14,15 +14,20 @@ interface PaperSectionProps {
   helpInfo?: string
   filter?: React.ReactNode
   children: React.ReactNode
+  sxCustom?: any
 }
 
 export const PaperSection = (props: PaperSectionProps) => {
-  const { id, title, subTitle, helpInfo, filter, children } = props
+  const { id, title, subTitle, sxCustom, helpInfo, filter, children } = props
 
   const isMD = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
 
   return (
-    <Paper className={'scrollable'} {...(id && isMD ? { id: slugify(id) } : {})}>
+    <Paper
+      className={'scrollable'}
+      {...(id && isMD ? { id: slugify(id) } : {})}
+      {...(sxCustom ? { sx: { ...sxCustom } } : {})}
+    >
       {!isMD && (
         <Box
           {...(id && !isMD ? { id: slugify(id) } : {})}

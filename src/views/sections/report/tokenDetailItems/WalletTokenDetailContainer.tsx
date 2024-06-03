@@ -192,10 +192,21 @@ export const WalletTokenDetailContainer = (props: WalletTokenDetailContainerProp
     height: isBreakpointOne ? 'fit-content' : isBreakpointTwo ? 500 : isBreakpointThree ? 470 : 360
   }
 
+  const [tableRefHeight, setTableRefHeight] = React.useState(520)
+
+  const expandCallback = (value: number) => {
+    setTableRefHeight(value)
+  }
+
   return (
     <PaperSection
       subTitle={currency === 'USD' ? 'Wallet token detail' : 'Wallet token detail (ETH)'}
       filter={isMD ? CommonFilter : MobileFilter}
+      sxCustom={
+        isMD
+          ? { height: tableRefHeight, ...(tableRefHeight !== 520 ? { marginBottom: 15 } : {}) }
+          : {}
+      }
     >
       {filteredWalletTokenDetail.length === 0 && !isFilterApplied ? (
         <EmptyData />
@@ -205,28 +216,37 @@ export const WalletTokenDetailContainer = (props: WalletTokenDetailContainerProp
           sx={{
             display: 'flex',
             flexDirection: isMD ? 'row' : 'column',
-            alignItems: 'center',
+            // alignItems: 'center',
             justifyContent: isMD ? 'center' : 'flex-start',
-            flexWrap: 'wrap'
+            flexWrap: 'wrap',
+            position: 'relative',
+            ...(isMD ? { height: `${tableRefHeight}px` } : {})
           }}
         >
-          <Box sx={{ width: isMD ? 'inherit' : '100%', justifyContent: 'center', display: 'flex' }}>
-            <PieChart
-              data={filteredWalletTokenDetailForPieChartWithColorsAndOthers.map((item: any) => {
-                return {
-                  name: item.label,
-                  y: item.allocation,
-                  color: item.color
-                }
-              })}
-              innerSize={settingsSize.innerSize}
-              outerSize={settingsSize.outerSize}
-              width={settingsHeightWidth.width}
-              height={settingsHeightWidth.height}
-              centered={true}
+          <Box sx={{ width: isMD ? 'inherit' : '100%' }}>
+            <div style={{ top: '20px', ...(tableRefHeight === 520 ? {} : { position: 'sticky' }) }}>
+              <PieChart
+                data={filteredWalletTokenDetailForPieChartWithColorsAndOthers.map((item: any) => {
+                  return {
+                    name: item.label,
+                    y: item.allocation,
+                    color: item.color
+                  }
+                })}
+                innerSize={settingsSize.innerSize}
+                outerSize={settingsSize.outerSize}
+                width={settingsHeightWidth.width}
+                height={settingsHeightWidth.height}
+                centered={true}
+              />
+            </div>
+          </Box>
+          <Box sx={{ width: isMD ? '50%' : '100%' }}>
+            <TableWalletTokenDetail
+              filteredWalletTokenDetail={filteredWalletTokenDetail}
+              expandCallback={expandCallback}
             />
           </Box>
-          <TableWalletTokenDetail filteredWalletTokenDetail={filteredWalletTokenDetail} />
         </Box>
       )}
     </PaperSection>

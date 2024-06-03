@@ -20,7 +20,6 @@ import {
 } from '@mui/material'
 import * as React from 'react'
 import { useApp } from 'src/contexts/app.context'
-import { useScreenSize } from 'src/hooks/useScreenSize'
 import { styled } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { debounce } from 'lodash'
@@ -31,6 +30,7 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 
 interface TableWalletTokenDetailProps {
   filteredWalletTokenDetail: any[]
+  expandCallback: (value: number) => void
 }
 
 export const CustomTypo = styled(CustomTypography)(({ theme }) => ({
@@ -52,13 +52,11 @@ export const CustomTypo = styled(CustomTypography)(({ theme }) => ({
 }))
 
 export const TableWalletTokenDetail = (props: TableWalletTokenDetailProps & BoxProps) => {
-  const { filteredWalletTokenDetail, ...moreProps } = props
+  const { filteredWalletTokenDetail, expandCallback, ...moreProps } = props
   const [displayAll, setDisplayAll] = React.useState(false)
 
   const { state } = useApp()
   const { currency } = state
-
-  const screenSize = useScreenSize()
 
   const isMD = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
 
@@ -114,14 +112,12 @@ export const TableWalletTokenDetail = (props: TableWalletTokenDetailProps & BoxP
     }
   }, [])
 
+  const customRowHeight = React.useRef<HTMLDivElement>(null)
+
   return (
     <>
       {isMD && (
-        <BoxWrapperColumn
-          gap={4}
-          sx={{ width: screenSize.width < 1650 ? '100%' : '50%' }}
-          {...moreProps}
-        >
+        <BoxWrapperColumn gap={4} {...moreProps}>
           <TableContainer component={Box} sx={{ width: '100%', overflowX: 'auto' }}>
             <Table sx={{ borderCollapse: 'separate', borderSpacing: 0 }}>
               <TableHead>
@@ -158,6 +154,9 @@ export const TableWalletTokenDetail = (props: TableWalletTokenDetailProps & BoxP
                     {filteredWalletTokenDetail.map((row: any, index: number) => {
                       if (!displayAll && index > 4) return null
 
+                      // check if is the first row
+                      const isTheFirstRow = index === 0
+
                       return (
                         <TableRow key={index} sx={{ '&:last-child td': { borderBottom: 0 } }}>
                           <TableCellCustom
@@ -169,6 +168,7 @@ export const TableWalletTokenDetail = (props: TableWalletTokenDetailProps & BoxP
                               backgroundColor: 'background.paper'
                             }}
                             align="left"
+                            ref={isTheFirstRow ? customRowHeight : null}
                           >
                             <BoxWrapperColumn>
                               <CustomTypo>{row.tokenSymbol}</CustomTypo>
@@ -225,7 +225,17 @@ export const TableWalletTokenDetail = (props: TableWalletTokenDetailProps & BoxP
                                   md: '16px'
                                 }
                               }}
-                              onClick={() => setDisplayAll(!displayAll)}
+                              onClick={() => {
+                                setDisplayAll(!displayAll)
+                                if (customRowHeight.current) {
+                                  const value = !displayAll
+                                    ? customRowHeight.current.clientHeight *
+                                        filteredWalletTokenDetail.length +
+                                      100
+                                    : 520
+                                  expandCallback(value)
+                                }
+                              }}
                             >
                               {!displayAll
                                 ? `${
@@ -247,7 +257,17 @@ export const TableWalletTokenDetail = (props: TableWalletTokenDetailProps & BoxP
                                   md: '16px'
                                 }
                               }}
-                              onClick={() => setDisplayAll(!displayAll)}
+                              onClick={() => {
+                                setDisplayAll(!displayAll)
+                                if (customRowHeight.current) {
+                                  const value = !displayAll
+                                    ? customRowHeight.current.clientHeight *
+                                        filteredWalletTokenDetail.length +
+                                      100
+                                    : 520
+                                  expandCallback(value)
+                                }
+                              }}
                             >
                               {displayAll ? 'View less' : 'View all'}
                             </CustomTypography>
