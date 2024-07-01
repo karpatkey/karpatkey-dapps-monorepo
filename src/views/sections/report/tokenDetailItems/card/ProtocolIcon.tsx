@@ -112,7 +112,7 @@ export const ProtocolIcon = (props: ProtocolIconProps) => {
       icon = <HoneySwap width={24} height={24} />
       break
     case 'Lido':
-      icon = <Lido width={24} height={24} />
+      icon = <Lido width={18} height={24} />
       break
     case 'Maker':
       icon = <Maker width={24} height={24} />

@@ -7,7 +7,6 @@ import {
 } from 'src/components'
 import { DAO_ADDRESS, FILTER_DAO } from 'src/config/constants'
 import { getDAO, getMonthName } from 'src/utils'
-import Image from 'next/image'
 import * as React from 'react'
 import { useApp } from 'src/contexts/app.context'
 import { Box, Theme } from '@mui/material'
@@ -45,6 +44,11 @@ export const Hero = () => {
         return d1.isSameOrBefore(d2)
       }) ?? []
 
+  const imageWidth =
+    dao?.keyName === 'Lido'
+      ? {}
+      : { width: dao?.keyName === 'Safe<>Gnosis' ? 232 : dao?.keyName === 'CoW DAO' ? 168 : 116 }
+
   return (
     <AnimatePresenceWrapper>
       {isMD ? (
@@ -60,12 +64,12 @@ export const Hero = () => {
         >
           <BoxWrapperRow sx={{ gap: { xs: 0, md: 2 } }}>
             <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-              <Image
+              <img
                 src={dao?.icon ?? ''}
-                alt={dao?.name}
-                width={dao?.keyName === 'Safe<>Gnosis' ? 232 : 116}
-                height={116}
+                alt={dao?.name ?? ''}
+                height={dao?.keyName === 'CoW DAO' ? 168 : 116}
                 key={dao?.icon}
+                {...imageWidth}
               />
             </Box>
             <a className="anchor" id="summary" />
@@ -73,7 +77,7 @@ export const Hero = () => {
               sx={{
                 alignItems: 'flex-start',
                 alignSelf: 'stretch',
-                justifyContent: 'space-between',
+                justifyContent: 'center',
                 gap: { xs: 1, md: 0 }
               }}
             >

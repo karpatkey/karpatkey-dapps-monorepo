@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React from 'react'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import { useRouter } from 'next/router'
@@ -101,9 +100,9 @@ export const Card = (props: CardProps) => {
           background: 'background.paper'
         }}
       >
-        <BoxWrapperRow sx={{ justifyContent: 'space-between' }}>
+        <BoxWrapperRow sx={{ justifyContent: 'space-between' }} gap={2}>
           <BoxWrapperRow gap={1}>
-            <Image src={icon} alt={name} width={keyName === 'Safe<>Gnosis' ? 48 : 32} height={32} />
+            <img src={icon} alt={name} height={32} />
             <Value value={name} fontWeight={600} />
           </BoxWrapperRow>
           <BoxWrapperRow gap={1}>

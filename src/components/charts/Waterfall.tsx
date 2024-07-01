@@ -29,7 +29,7 @@ const CustomTooltip = ({ active, payload }: any) => {
   const { state } = useApp()
   const { currency } = state
 
-  if (active && payload && payload.length) {
+  if (active && payload && payload.length > 0) {
     return (
       <Paper
         elevation={24}
@@ -45,7 +45,7 @@ const CustomTooltip = ({ active, payload }: any) => {
           color="textSecondary"
           sx={{ padding: 1, fontWeight: 'bold', textAlign: 'left' }}
         >
-          {payload[1].payload.value}
+          {payload[1]?.payload?.value}
         </CustomTypography>
         <CustomTypography
           variant="body2"
@@ -53,8 +53,8 @@ const CustomTooltip = ({ active, payload }: any) => {
           sx={{ padding: 1, textAlign: 'left' }}
         >
           {currency === 'USD'
-            ? formatCurrency(payload[1].value, 0, true)
-            : formatNumber(payload[1].value, 0)}
+            ? formatCurrency(payload[1]?.value, 0, true)
+            : formatNumber(payload[1]?.value, 0)}
         </CustomTypography>
       </Paper>
     )
@@ -180,13 +180,13 @@ export const Waterfall = ({
   )
   if (isMoreThanMDAndLessThanLG) {
     charactersLength = 8
-    fontSize = 12
+    fontSize = 11
   }
 
   const isLessThanMD = useMediaQuery((theme: any) => theme.breakpoints.down('md'))
   if (isLessThanMD) {
     charactersLength = 8
-    fontSize = 12
+    fontSize = 9
   }
 
   return (

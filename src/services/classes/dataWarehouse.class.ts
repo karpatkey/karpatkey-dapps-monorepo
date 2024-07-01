@@ -259,9 +259,7 @@ export class DataWarehouse {
       ]
     let viewQuery = `SELECT * FROM  \`karpatkey-data-warehouse.${table}\``
     if (DAO && metricPeriod && metricPeriodType) {
-      viewQuery = viewQuery.concat(
-        ` WHERE dao = '${DAO}' AND date_type = '${metricPeriodType}' AND year_month = '${metricPeriod}'`
-      )
+      viewQuery = viewQuery.concat(` WHERE dao = '${DAO}'  AND year_month = '${metricPeriod}'`)
     }
 
     return await this.executeCommonJobQuery(viewQuery)
@@ -278,9 +276,7 @@ export class DataWarehouse {
       ]
     let viewQuery = `SELECT * FROM  \`karpatkey-data-warehouse.${table}\``
     if (DAO && metricPeriod && metricPeriodType) {
-      viewQuery = viewQuery.concat(
-        ` WHERE dao = '${DAO}' AND date_type = '${metricPeriodType}' AND year_month = '${metricPeriod}'`
-      )
+      viewQuery = viewQuery.concat(` WHERE dao = '${DAO}'  AND year_month = '${metricPeriod}'`)
     }
 
     return await this.executeCommonJobQuery(viewQuery)

@@ -2,7 +2,6 @@ import React from 'react'
 import { BoxWrapperColumn, BoxWrapperRow, CustomTypography } from 'src/components'
 import { Box, Snackbar } from '@mui/material'
 import { ShareIcon } from 'components/icons'
-import Image from 'next/image'
 import { useApp } from 'src/contexts/app.context'
 import { FILTER_DAO, FILTER_DAOS, MONTHS } from 'src/config/constants'
 import { getDAO, getMonthName } from 'src/utils'
@@ -133,7 +132,6 @@ export const Menu = () => {
 
   const imgSrc = selectedDAO ? getDAO(selectedDAO)?.icon ?? '' : ''
   const imgAlt = selectedDAO ? getDAO(selectedDAO)?.name ?? '' : ''
-  const imgKey = selectedDAO ? getDAO(selectedDAO)?.keyName ?? '' : ''
 
   const daoName = selectedDAO ? getDAO(selectedDAO)?.name ?? '' : ''
 
@@ -163,6 +161,27 @@ export const Menu = () => {
 
   const isDisabled = !selectedDAO || !selectedPeriod || !selectedCurrency
 
+  const imageWidth = dao?.keyName === 'Lido' ? {} : dao?.keyName === 'CoW DAO' ? {} : { width: 76 }
+
+  const imageHeight = { height: dao?.keyName === 'CoW DAO' ? 48 : 38 }
+
+  const daoWithValues: FILTER_DAO | undefined = getDAO(selectedDAO)
+  const imageWidthViewer =
+    daoWithValues?.keyName === 'Lido'
+      ? {}
+      : daoWithValues?.keyName === 'CoW DAO'
+        ? {}
+        : daoWithValues?.keyName === 'Safe<>Gnosis'
+          ? { width: 44 }
+          : { width: 30 }
+
+  const imageHeightViewer =
+    daoWithValues?.keyName === 'CoW DAO'
+      ? { height: 34 }
+      : daoWithValues?.keyName === 'Safe<>Gnosis'
+        ? { height: 44 }
+        : { height: 30 }
+
   return (
     <>
       <BoxWrapperRow
@@ -176,12 +195,12 @@ export const Menu = () => {
         }}
       >
         <BlockMenu onClick={handleClickOpenModal} gap={1}>
-          <Image
+          <img
             src={dao?.icon ?? ''}
             alt={dao?.name || ''}
-            width={76}
-            height={38}
             key={dao?.icon}
+            {...imageWidth}
+            {...imageHeight}
           />
           <CustomTypo
             sx={{
@@ -274,7 +293,13 @@ export const Menu = () => {
                 }}
               >
                 <BoxWrapperRow gap={2}>
-                  <Image src={imgSrc} alt={imgAlt} width={30} height={30} key={imgKey} />
+                  <img
+                    src={imgSrc}
+                    alt={imgAlt}
+                    key={imgAlt}
+                    {...imageWidthViewer}
+                    {...imageHeightViewer}
+                  />
                   <CustomTypo sx={{ color: 'custom.grey.ternary' }}>
                     {daoName || 'Select DAO'}
                   </CustomTypo>
@@ -363,24 +388,51 @@ export const Menu = () => {
             <CustomTypo sx={{ color: 'primary.main', marginY: '20px' }}>Select DAO</CustomTypo>
             {FILTER_DAOS.filter((option: FILTER_DAO) => option.isEnabled)
               .sort((a, b) => (a.name < b.name ? -1 : 1))
-              .map((option: FILTER_DAO) => (
-                <CustomButton
-                  key={option.id}
-                  onClick={() => {
-                    setIsMenuBeenDisplayed(true)
-                    setIsDAOSelectionBeenDisplayed(false)
-                    setSelectedDAO(option.id)
-                    setSelectedPeriod(null)
-                    setSelectedCurrency(null)
-                  }}
-                  sx={{ justifyContent: 'flex-start' }}
-                >
-                  <BoxWrapperRow gap={2} sx={{ paddingLeft: '70px' }}>
-                    <Image src={option.icon || ''} alt={option.name} width={30} height={30} />
-                    <CustomTypo>{option.name}</CustomTypo>
-                  </BoxWrapperRow>
-                </CustomButton>
-              ))}
+              .map((option: FILTER_DAO) => {
+                const imageWithViewerInter =
+                  option?.keyName === 'CoW DAO'
+                    ? { width: 42 }
+                    : option?.keyName === 'Safe<>Gnosis'
+                      ? { width: 60 }
+                      : option?.keyName === 'Lido'
+                        ? { width: 24 }
+                        : { width: 30 }
+
+                const imageHeightViewerInter =
+                  option?.keyName === 'CoW DAO'
+                    ? { height: 42 }
+                    : option?.keyName === 'Safe<>Gnosis'
+                      ? { height: 42 }
+                      : { height: 30 }
+
+                return (
+                  <CustomButton
+                    key={option.id}
+                    onClick={() => {
+                      setIsMenuBeenDisplayed(true)
+                      setIsDAOSelectionBeenDisplayed(false)
+                      setSelectedDAO(option.id)
+                      setSelectedPeriod(null)
+                      setSelectedCurrency(null)
+                    }}
+                  >
+                    <BoxWrapperRow gap={2} sx={{ width: '100%' }}>
+                      <Box sx={{ width: '40%', justifyContent: 'center', paddingLeft: '45px' }}>
+                        <img
+                          src={option.icon}
+                          alt={option.name}
+                          key={option.name}
+                          {...imageWithViewerInter}
+                          {...imageHeightViewerInter}
+                        />
+                      </Box>
+                      <Box sx={{ width: '60%', textAlign: 'left' }}>
+                        <CustomTypo>{option.name}</CustomTypo>
+                      </Box>
+                    </BoxWrapperRow>
+                  </CustomButton>
+                )
+              })}
           </BoxWrapperColumn>
         </BoxWrapperColumn>
 

@@ -1,21 +1,5 @@
 import { isFeatureFlagOne } from '../params'
 
-export const getFarmingFundsTotal = (data: any) => {
-  return data.reduce((acc: any, obj: any): number => {
-    const value = obj['metric'] === 'total farming' ? obj['metric_value'] : 0
-    acc += value
-    return acc
-  }, 0)
-}
-
-export const getDeFiFundsTotal = (data: any) => {
-  return data.reduce((acc: any, obj: any): number => {
-    const value = obj?.waterfall_metric === '03 DeFi results' ? obj?.metric_value : 0
-    acc += value
-    return acc
-  }, 0)
-}
-
 export const getOperationDetails = (data: any) => {
   // USD
   let rowsUSD = data

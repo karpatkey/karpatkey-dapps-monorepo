@@ -1,6 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search'
 import { Box, TextField, AutocompleteRenderInputParams } from '@mui/material'
-import Image from 'next/image'
 import * as React from 'react'
 import { CustomAutocomplete, CustomTypography, BoxWrapperRow } from 'src/components'
 import { FILTER_DAO, FILTER_DAOS } from 'src/config/constants'
@@ -26,10 +25,22 @@ const RenderInput = (params: AutocompleteRenderInputParams) => {
     }
   })
 
+  const imageWidth =
+    option?.keyName === 'Lido'
+      ? { width: 20 }
+      : { width: option?.keyName === 'Safe<>Gnosis' ? 40 : option?.keyName === 'CoW DAO' ? 30 : 40 }
+
+  const imageHeight =
+    option?.keyName === 'Lido'
+      ? { height: 25 }
+      : {
+          height: option?.keyName === 'Safe<>Gnosis' ? 40 : option?.keyName === 'CoW DAO' ? 30 : 20
+        }
+
   if (option) {
     InputProps.startAdornment = (
       <>
-        <Image src={option.icon || ''} alt={option.name} width={40} height={20} />
+        <img src={option.icon || ''} alt={option.name} {...imageWidth} {...imageHeight} />
         &nbsp;
       </>
     )
@@ -52,14 +63,52 @@ const RenderInput = (params: AutocompleteRenderInputParams) => {
 }
 
 const RenderOption = (props: any, option: any) => {
+  const imageWidth =
+    option?.label === 'Lido'
+      ? { width: 20 }
+      : {
+          width: option?.label === 'Safe<>Gnosis' ? 40 : option?.label === 'CoW Protocol' ? 30 : 40
+        }
+
+  const imageHeight =
+    option?.label === 'Lido'
+      ? { height: 25 }
+      : {
+          height: option?.label === 'Safe<>Gnosis' ? 40 : option?.label === 'CoW Protocol' ? 30 : 20
+        }
+
+  const styles =
+    option?.label === 'Lido'
+      ? { marginLeft: '10px' }
+      : option?.label === 'CoW Protocol'
+        ? { marginLeft: '5px' }
+        : {}
+
   return (
     <Box
       component="span"
-      sx={{ '& > img': { mr: 2, flexShrink: 0 }, backgroundColor: '#F5F5F5', width: 230 }}
+      sx={{
+        '& > img': {
+          mr: 2,
+          ...styles
+        },
+        '& > span': {
+          ...styles
+        },
+        backgroundColor: '#F5F5F5',
+        width: 230
+      }}
+      key={option.name}
       {...props}
     >
-      <Image src={option.logo || ''} alt={option.label} width={40} height={20} />
-      {option.label}
+      <img
+        key={option.name}
+        src={option.logo || ''}
+        alt={option.label}
+        {...imageWidth}
+        {...imageHeight}
+      />
+      <span>{option.label}</span>
     </Box>
   )
 }

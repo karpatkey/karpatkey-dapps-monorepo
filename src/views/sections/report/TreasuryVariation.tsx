@@ -10,7 +10,7 @@ import { getDAO } from 'src/utils'
 import InfoIcon from '@mui/icons-material/Info'
 import { Theme, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material'
 import * as React from 'react'
-import { isFeatureFlagOne } from 'src/utils/params'
+import { isFeatureFlagOne, isFeatureFlagThree } from 'src/utils/params'
 import { useApp } from 'src/contexts/app.context'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
@@ -74,7 +74,8 @@ export const TreasuryVariation = (props: TreasuryVariationProps) => {
 
   const [toggleType, setToggleType] = React.useState(0)
 
-  const isDDay = isFeatureFlagOne()
+  const isFeatureFlagOneVar = isFeatureFlagOne()
+  const isFeatureFlagThreeVar = isFeatureFlagThree()
 
   const handleToggleOnChange = (event: React.MouseEvent<HTMLElement>, newToggleType: number) => {
     if (newToggleType === null) return
@@ -102,7 +103,7 @@ export const TreasuryVariation = (props: TreasuryVariationProps) => {
             currency === 'USD' ? 'Treasury variation summary' : 'Treasury variation summary (ETH)'
           }
           helpInfo={
-            isDDay
+            isFeatureFlagOneVar
               ? 'Balance variation for the period (also year to period), results separated into Operations and DeFi results'
               : 'Balance variation for the period (also year to period), results separated into Non Farming and Farming Results.'
           }
@@ -116,14 +117,22 @@ export const TreasuryVariation = (props: TreasuryVariationProps) => {
         >
           <TabPanel value={toggleType} index={0}>
             {treasuryVariationData?.length > 0 ? (
-              <Waterfall data={treasuryVariationData} barSize={isMD ? 150 : 40} />
+              <Waterfall
+                data={treasuryVariationData}
+                barSize={isMD ? 150 : 40}
+                bottom={isMD ? (isFeatureFlagThreeVar ? 80 : 20) : 80}
+              />
             ) : (
               <EmptyData />
             )}
           </TabPanel>
           <TabPanel value={toggleType} index={1}>
             {historicVariationData?.length > 0 ? (
-              <Waterfall data={historicVariationData} barSize={isMD ? 150 : 40} />
+              <Waterfall
+                data={historicVariationData}
+                barSize={isMD ? 150 : 40}
+                bottom={isMD ? (isFeatureFlagThreeVar ? 80 : 20) : 80}
+              />
             ) : (
               <EmptyData />
             )}

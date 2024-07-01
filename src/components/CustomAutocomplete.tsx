@@ -21,7 +21,12 @@ interface AutocompleteProps {
 
 const CustomRenderOption = (props: any, option: any) => {
   return (
-    <Box component="span" sx={{ backgroundColor: 'custom.grey.light' }} {...props}>
+    <Box
+      component="span"
+      sx={{ backgroundColor: 'custom.grey.light' }}
+      key={option?.label}
+      {...props}
+    >
       {option.label}
     </Box>
   )

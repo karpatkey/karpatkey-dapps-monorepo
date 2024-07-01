@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import React from 'react'
 import { useRouter } from 'next/router'
@@ -18,8 +17,7 @@ import {
   TableEmptyCellCustom,
   TableCellCustom,
   CustomTypography,
-  LinkWrapper,
-  BoxWrapperRow
+  LinkWrapper
 } from 'src/components'
 import { Currency, DAOResume } from 'src/contexts/state'
 import { isFeatureFlagTwo } from '../../../utils/params'
@@ -50,6 +48,7 @@ export const Table = ({
         <TableHead>
           <TableRow sx={{ '& th': { borderBottom: 'none !important' } }}>
             <TableEmptyCellCustom
+              colSpan={2}
               sx={{
                 minWidth: '260px',
                 maxWidth: '260px',
@@ -200,21 +199,33 @@ export const Table = ({
                       <TableCellCustom
                         align="left"
                         sx={{
-                          minWidth: '260px',
-                          maxWidth: '260px',
+                          minWidth: '120px',
+                          maxWidth: '120px',
                           paddingY: '4px',
                           paddingLeft: '5px'
                         }}
                       >
                         <LinkWrapper url={urlToReport}>
-                          <BoxWrapperRow key={index} gap={4} sx={{ justifyContent: 'flex-start' }}>
-                            <Box sx={{ justifyContent: 'center' }}>
-                              <Image src={icon} alt={name} width={96} height={48} />
-                            </Box>
-                            <Box sx={{ width: '100%' }}>
-                              <Value value={name} fontWeight={600} />
-                            </Box>
-                          </BoxWrapperRow>
+                          <Box sx={{ textAlign: 'center' }}>
+                            {name.includes('CoW') ? (
+                              <img src={icon} alt={name} height={64} />
+                            ) : (
+                              <img src={icon} alt={name} height={48} />
+                            )}
+                          </Box>
+                        </LinkWrapper>
+                      </TableCellCustom>
+                      <TableCellCustom
+                        align="left"
+                        sx={{
+                          minWidth: '140px',
+                          maxWidth: '140px',
+                          paddingY: '4px',
+                          paddingLeft: '5px'
+                        }}
+                      >
+                        <LinkWrapper url={urlToReport}>
+                          <Value value={name} fontWeight={600} />
                         </LinkWrapper>
                       </TableCellCustom>
                       <TableCellCustom
@@ -231,7 +242,9 @@ export const Table = ({
                             value={
                               defaultCurrency === 'USD'
                                 ? formatCurrency(totalFundsUSD || 0)
-                                : `${formatNumber(totalFundsETH || 0, 0)} ETH`
+                                : totalFundsETH
+                                  ? `${formatNumber(totalFundsETH || 0, 0)} ETH`
+                                  : '-'
                             }
                           />
                         </LinkWrapper>
@@ -265,7 +278,9 @@ export const Table = ({
                             value={
                               defaultCurrency === 'USD'
                                 ? formatCurrency(deFiResultsUSD || 0)
-                                : `${formatNumber(deFiResultsETH || 0, 0)} ETH`
+                                : deFiResultsETH
+                                  ? `${formatNumber(deFiResultsETH || 0, 0)} ETH`
+                                  : '-'
                             }
                           />
                         </LinkWrapper>
